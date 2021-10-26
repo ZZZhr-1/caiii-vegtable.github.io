@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="Assemblyhttps:&#x2F;&#x2F;www.tutorialspoint.com&#x2F;assembly_programming&#x2F;assembly_procedures.htm 0、 安装nasm汇编编译器 1、 Write a hello world assembly program 1234567891011121314151617segment .datamsg  db   &quot;Hello,">
+<meta name="description" content="Assembly">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Assembly">
 <meta property="og:url" content="https://caiii-vegtable.github.io/2020/10/09/bin-1/index.html">
 <meta property="og:site_name" content="inHaus&#39;blog">
-<meta property="og:description" content="Assemblyhttps:&#x2F;&#x2F;www.tutorialspoint.com&#x2F;assembly_programming&#x2F;assembly_procedures.htm 0、 安装nasm汇编编译器 1、 Write a hello world assembly program 1234567891011121314151617segment .datamsg  db   &quot;Hello,">
+<meta property="og:description" content="Assembly">
 <meta property="article:published_time" content="2020-10-09T12:15:56.000Z">
-<meta property="article:modified_time" content="2020-10-13T06:37:32.865Z">
+<meta property="article:modified_time" content="2021-10-26T08:50:43.323Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 
@@ -180,7 +180,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -189,12 +189,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Archives
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
@@ -271,6 +281,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/base/" itemprop="url" rel="index">
+                    <span itemprop="name">base</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -298,7 +330,9 @@
       
 
       
-        <h1 id="Assembly"><a href="#Assembly" class="headerlink" title="Assembly"></a>Assembly</h1><p><a href="https://www.tutorialspoint.com/assembly_programming/assembly_procedures.htm" target="_blank" rel="noopener">https://www.tutorialspoint.com/assembly_programming/assembly_procedures.htm</a></p>
+        <h1 id="Assembly"><a href="#Assembly" class="headerlink" title="Assembly"></a>Assembly</h1><a id="more"></a>
+
+<p><a href="https://www.tutorialspoint.com/assembly_programming/assembly_procedures.htm" target="_blank" rel="noopener">https://www.tutorialspoint.com/assembly_programming/assembly_procedures.htm</a></p>
 <p>0、 安装nasm汇编编译器</p>
 <p>1、 Write a hello world assembly program</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">segment .data</span><br><span class="line">msg  db   &quot;Hello, world!&quot;,10</span><br><span class="line">len  equ  $- msg</span><br><span class="line"></span><br><span class="line">segment .text</span><br><span class="line">global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">   mov  eax,4</span><br><span class="line">   mov  ebx,1</span><br><span class="line">   mov  ecx,msg</span><br><span class="line">   mov  edx,len</span><br><span class="line">   int  80h</span><br><span class="line"></span><br><span class="line">   mov  eax,1</span><br><span class="line">   mov  ebx,0</span><br><span class="line">   int  80h</span><br></pre></td></tr></table></figure>
@@ -485,14 +519,23 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
             
 
             
@@ -544,7 +587,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

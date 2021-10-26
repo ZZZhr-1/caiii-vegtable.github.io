@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="python scapy简易流量分析研究目标：利用python的scapy库实现类似于wireshark的网络流量嗅探功能，完成流量包的抓取、解析等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scapy网络流量分析">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2021/03/11/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="inHaus&#39;blog">
+<meta property="og:description" content="python scapy简易流量分析研究目标：利用python的scapy库实现类似于wireshark的网络流量嗅探功能，完成流量包的抓取、解析等。">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/2.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1-1615700597910.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/tcpip.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/6c5cf4bfba824e73a571c2193aab4fc8.jpeg">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/3.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/image-20210314140147702.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/4-1615702043206.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/5.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/2-1615702315826.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/2-1616634361595.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1-1616634372601.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/3-1616634491588.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/4-1616635311361.png">
+<meta property="article:published_time" content="2021-03-11T06:15:30.000Z">
+<meta property="article:modified_time" content="2021-10-26T09:12:40.844Z">
+<meta property="article:author" content="caiii-vegtable">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2021/03/11/scapy网络流量分析/"/>
+
+
+
+
+
+  <title>scapy网络流量分析 | inHaus'blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">inHaus'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2021/03/11/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caiii-vegtable">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="inHaus'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">scapy网络流量分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-11T14:15:30+08:00">
+                2021-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/others/" itemprop="url" rel="index">
+                    <span itemprop="name">others</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python-scapy简易流量分析"><a href="#python-scapy简易流量分析" class="headerlink" title="python scapy简易流量分析"></a>python scapy简易流量分析</h1><p><strong>研究目标</strong>：利用python的scapy库实现类似于wireshark的网络流量嗅探功能，完成流量包的抓取、解析等。</p>
+<a id="more"></a>
+
+<h2 id="scapy"><a href="#scapy" class="headerlink" title="scapy"></a>scapy</h2><p>Scapy是一个Python库，使用户能够发送，嗅探和剖析并伪造网络数据包。此功能允许构建可以探测，扫描或攻击网络的工具。换言之，Scapy 是一个强大的操纵报文的交互程序。它可以伪造或者解析多种协议的报文，还具有发送、捕获、匹配请求和响应这些报文以及更多的功能。</p>
+<h2 id="scapy库安装"><a href="#scapy库安装" class="headerlink" title="scapy库安装"></a>scapy库安装</h2><p>在终端中输入 <code>python -m pip install sacpy</code></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1.png" alt="1"></p>
+<p>验证一下是否安装成功</p>
+<p><code>from scapy.all import *</code><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/2.png" alt="2"></p>
+<p>没有报错，安装成功。</p>
+<h2 id="scapy简单使用"><a href="#scapy简单使用" class="headerlink" title="scapy简单使用"></a>scapy简单使用</h2><p><strong>sniff()函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sniff(count=<span class="number">0</span>,</span><br><span class="line">      store=<span class="number">1</span>,</span><br><span class="line">      offline=<span class="literal">None</span>,</span><br><span class="line">      prn=<span class="literal">None</span>,</span><br><span class="line">      filter=<span class="literal">None</span>,</span><br><span class="line">      L2socket=<span class="literal">None</span>,</span><br><span class="line">      timeout=<span class="literal">None</span>,</span><br><span class="line">      opened_socket=<span class="literal">None</span>,</span><br><span class="line">      stop_filter=<span class="literal">None</span>,</span><br><span class="line">      iface=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>count</strong>:抓取报的数量，设置为0时则一直捕获</li>
+<li>store:保存抓取的数据包或者丢弃，1保存，0丢弃</li>
+<li>offline:从pcap文件中读取数据包，而不进行嗅探，默认为None</li>
+<li><strong>prn</strong>:为每个数据包定义一个回调函数，使用lambda表达式</li>
+<li><strong>filter</strong>:过滤规则，可以在里面定义winreshark里面的过滤语法（BPF）</li>
+<li>L2socket:使用给定的L2socket</li>
+<li>timeout:在给定的事件后停止嗅探，默认为None</li>
+<li>opened_socket:对指定的对象使用.recv进行读取</li>
+<li>stop_filter:定义一个函数，决定在抓到指定的数据之后停止</li>
+<li><strong>iface</strong>:指定抓包的网卡,不指定则代表所有网卡</li>
+</ul>
+<p><strong>示例</strong></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1-1615700597910.png" alt="1"></p>
+<h2 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h2><p><strong>参考网络</strong></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/tcpip.png" alt="tcpip"></p>
+<p>TCP/IP（Transmission Control Protocol/Internet Protocol，传输控制协议/网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP/IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇， 只是因为在TCP/IP协议中TCP协议和IP协议最具代表性，所以被称为TCP/IP协议。</p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/6c5cf4bfba824e73a571c2193aab4fc8.jpeg" alt="img"></p>
+<p>每个分层中，都会对所发送的数据附加一个首部，在这个首部中包含了该层必要的信息，如发送的目标地址以及协议相关信息。通常，为协议提供的信息为包首部，所要发送的内容为数据。在下一层的角度看，从上一层收到的包全部都被认为是本层的数据。</p>
+<p><strong>以太网包头</strong></p>
+<p>包含目的地址（6字节）、源地址（6字节）和类型（2字节）</p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/3.png" alt="3"></p>
+<p><strong>IP包头</strong></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/image-20210314140147702.png" alt="image-20210314140147702"></p>
+<p><strong>TCP包头</strong></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/4-1615702043206.png" alt="4"></p>
+<p><strong>UPD包头</strong></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/5.png" alt="5"></p>
+<p><strong>实例</strong></p>
+<p>通过scapy抓包后打印详细信息</p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/2-1615702315826.png" alt="2"></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a><strong>基本思路</strong></h3><ul>
+<li>利用python GUI库tkinter实现用户交互界面制作。<ul>
+<li>按钮控制、表格显示、详细信息显示、16进制显示等</li>
+</ul>
+</li>
+<li>利用sniff函数抓取数据包，抓包时可以filter过滤规则过滤需要的数据报。</li>
+<li>对抓取的数据包进行处理，分析数据包的Time、Source、Destination、Protocol、Length和简单信息</li>
+<li>单击数据包，显示详细信息；双击数据包，显示数据包16进制</li>
+<li>提供保存功能</li>
+</ul>
+<h3 id="python-tkinter-库"><a href="#python-tkinter-库" class="headerlink" title="python tkinter 库"></a><strong>python tkinter 库</strong></h3><p>Tkinter 是 Python 的标准 GUI 库。Python 使用 Tkinter 可以快速的创建 GUI 应用程序。</p>
+<p>由于 Tkinter 是内置到 python 的安装包中、只要安装好 Python 之后就能 import Tkinter 库、而且 IDLE 也是用 Tkinter 编写而成、对于简单的图形界面 Tkinter 还是能应付自如。</p>
+<h3 id="GUI设计实现"><a href="#GUI设计实现" class="headerlink" title="GUI设计实现"></a>GUI设计实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#初始化窗口</span></span><br><span class="line">    ui = tk.Tk()</span><br><span class="line">    ui.geometry(<span class="string">'1000x800'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#设置按钮</span></span><br><span class="line">    startB = tk.Button(ui, text=<span class="string">'start'</span>, command=start_capture)</span><br><span class="line">    startB.place(x=<span class="number">100</span>,y=<span class="number">20</span>)</span><br><span class="line">    stopB = tk.Button(text=<span class="string">'stop'</span>,command=stop_capture, state = tk.DISABLED)</span><br><span class="line">    stopB.place(x=<span class="number">150</span>,y=<span class="number">20</span>)</span><br><span class="line">    saveB = tk.Button(ui, text=<span class="string">'save'</span>, state=tk.DISABLED, command=save_file)</span><br><span class="line">    saveB.place(x=<span class="number">200</span>,y=<span class="number">20</span>)</span><br><span class="line">    exitB = tk.Button(ui, text=<span class="string">'exit'</span>, command=exit)</span><br><span class="line">    exitB.place(x=<span class="number">250</span>,y=<span class="number">20</span>)</span><br><span class="line">    tk.Label(ui, text=<span class="string">'抓包条件BPF：  '</span>).place(x=<span class="number">300</span>,y=<span class="number">20</span>)</span><br><span class="line">    filter_bft = tk.Entry(width=<span class="string">'40'</span>)</span><br><span class="line">    filter_bft.place(x=<span class="number">350</span>,y=<span class="number">20</span>)</span><br><span class="line">  </span><br><span class="line">    <span class="comment">#设置表格</span></span><br><span class="line">    packet_list=ttk.Treeview(ui)</span><br><span class="line">    packet_list.place(x=<span class="number">50</span>,y=<span class="number">120</span>,height=<span class="number">300</span>,width=<span class="number">920</span>)</span><br><span class="line">    packet_list[<span class="string">'columns'</span>]=(<span class="string">'Time'</span>,<span class="string">'Source'</span>,<span class="string">'Destination'</span>,<span class="string">'Protocol'</span>,<span class="string">'Length'</span>,<span class="string">'Info'</span>)</span><br><span class="line">    packet_list.column(<span class="string">'Time'</span>,width=<span class="number">150</span>)</span><br><span class="line">    packet_list.column(<span class="string">'Source'</span>,width=<span class="number">120</span>)</span><br><span class="line">    packet_list.column(<span class="string">'Destination'</span>,width=<span class="number">120</span>)</span><br><span class="line">    packet_list.column(<span class="string">'Protocol'</span>,width=<span class="number">120</span>)</span><br><span class="line">    packet_list.column(<span class="string">'Length'</span>,width=<span class="number">120</span>)</span><br><span class="line">    packet_list.column(<span class="string">'Info'</span>,width=<span class="number">400</span>)</span><br><span class="line">    packet_list.heading(<span class="string">'Time'</span>,text=<span class="string">'Time'</span>)</span><br><span class="line">    packet_list.heading(<span class="string">'Source'</span>,text=<span class="string">'Source'</span>)</span><br><span class="line">    packet_list.heading(<span class="string">'Destination'</span>,text=<span class="string">'Destination'</span>)</span><br><span class="line">    packet_list.heading(<span class="string">'Protocol'</span>,text=<span class="string">'Protocol'</span>)</span><br><span class="line">    packet_list.heading(<span class="string">'Length'</span>,text=<span class="string">'Length'</span>)</span><br><span class="line">    packet_list.heading(<span class="string">'Info'</span>,text=<span class="string">'Info'</span>)</span><br><span class="line">    <span class="comment">#设置表格滚动条</span></span><br><span class="line">    scY=tk.Scrollbar(ui)</span><br><span class="line">    scY.place(x=<span class="number">970</span>,y=<span class="number">120</span>,height=<span class="number">300</span>)</span><br><span class="line">    packet_list.config(yscrollcommand=scY.set)</span><br><span class="line">    scY.config(command=packet_list.yview)</span><br><span class="line">    scX=tk.Scrollbar(ui,orient=tk.HORIZONTAL)</span><br><span class="line">    scX.place(x=<span class="number">50</span>,y=<span class="number">410</span>,width=<span class="number">920</span>)</span><br><span class="line">    packet_list.config(xscrollcommand=scX.set)</span><br><span class="line">    scX.config(command=packet_list.xview)</span><br><span class="line">    <span class="comment">#设置表格单击响应和双击响应</span></span><br><span class="line">    packet_list.bind(<span class="string">'&lt;Double-Button-1&gt;'</span>, getInfo)</span><br><span class="line">    packet_list.bind(<span class="string">'&lt;ButtonRelease-1&gt;'</span>, showInfo)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#信息框</span></span><br><span class="line">    textvar=tk.StringVar()</span><br><span class="line">    infoBox=tk.Text(ui)</span><br><span class="line">    infoBox.place(x=<span class="number">50</span>, y=<span class="number">450</span>,height=<span class="number">350</span>,width=<span class="number">920</span>)</span><br><span class="line">    sc_info=tk.Scrollbar(ui)</span><br><span class="line">    sc_info.place(x=<span class="number">970</span>,y=<span class="number">450</span>,height=<span class="number">350</span>)</span><br><span class="line">    infoBox.config(yscrollcommand=sc_info.set)</span><br><span class="line">    sc_info.config(command=infoBox.yview)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#进入消息循环</span></span><br><span class="line">    ui.mainloop()</span><br></pre></td></tr></table></figure>
+
+<p>主要包括了按钮、输入框、表格、滚动条、文本框等控件</p>
+<h3 id="抓取数据包"><a href="#抓取数据包" class="headerlink" title="抓取数据包"></a><strong>抓取数据包</strong></h3><p><strong>capture_packet函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#抓包函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">capture_packet</span><span class="params">()</span>:</span></span><br><span class="line">    capture_filter=filter_bft.get()</span><br><span class="line">    <span class="keyword">global</span> packets</span><br><span class="line">    packets.clear()</span><br><span class="line">    <span class="keyword">global</span> e</span><br><span class="line">    e.clear()</span><br><span class="line">    sniff(prn=(<span class="keyword">lambda</span> x: process_packet(x)), filter=capture_filter, stop_filter=(<span class="keyword">lambda</span> x: e.is_set()))</span><br><span class="line">    print(<span class="string">'capturing...'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>从tkinter控件entry中读取filter过滤条件，初始化数据包列表packets，e.clear()将线程控制事件置为false</p>
+<p><code>sniff(prn=(lambda x: process_packet(x)), filter=capture_filter, stop_filter=(lambda x: e.is_set()))</code></p>
+<p>抓包的主要函数，prn定义回调函数，将抓到的包传给process_packet函数处理，filter给出抓包条件，stop_filter给出停止条件。</p>
+<h3 id="处理数据包"><a href="#处理数据包" class="headerlink" title="处理数据包"></a>处理数据包</h3><p><strong>process_packet函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#处理数据包</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_packet</span><span class="params">(packet_x)</span>:</span></span><br><span class="line">    packets.append(packet_x)</span><br><span class="line"></span><br><span class="line">    timearry=time.localtime(packet_x.time)</span><br><span class="line">    p_time=time.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>,timearry)</span><br><span class="line">    </span><br><span class="line">    src=packet_x[Ether].src</span><br><span class="line">    dst=packet_x[Ether].dst</span><br><span class="line">    p_type=packet_x[Ether].type</span><br><span class="line">    </span><br><span class="line">    types = &#123;<span class="number">0x0800</span>:<span class="string">'IPv4'</span>,<span class="number">0x0806</span>:<span class="string">'ARP'</span>,<span class="number">0x86dd</span>:<span class="string">'IPv6'</span>,<span class="number">0x88cc</span>:<span class="string">'LLDP'</span>,<span class="number">0x891D</span>:<span class="string">'TTE'</span>&#125;</span><br><span class="line">    <span class="keyword">if</span> p_type <span class="keyword">in</span> types:</span><br><span class="line">        proto = types[p_type]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        proto = <span class="string">'LOOP'</span>  <span class="comment"># 协议</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#IPv4</span></span><br><span class="line">    <span class="keyword">if</span> proto == <span class="string">'IPv4'</span>:</span><br><span class="line">        protos = &#123;<span class="number">1</span>:<span class="string">'ICMP'</span>, <span class="number">2</span>:<span class="string">'IGMP'</span>, <span class="number">4</span>:<span class="string">'IP'</span>, <span class="number">6</span>:<span class="string">'TCP'</span>, <span class="number">8</span>:<span class="string">'EGP'</span>, <span class="number">9</span>:<span class="string">'IGP'</span>, <span class="number">17</span>:<span class="string">'UDP'</span>, <span class="number">41</span>:<span class="string">'IPv6'</span>, <span class="number">50</span>:<span class="string">'ESP'</span>, <span class="number">89</span>:<span class="string">'OSPF'</span>&#125;</span><br><span class="line">        src = packet_x[IP].src</span><br><span class="line">        dst = packet_x[IP].dst</span><br><span class="line">        proto=packet_x[IP].proto</span><br><span class="line">        <span class="keyword">if</span> proto <span class="keyword">in</span> protos:</span><br><span class="line">            proto=protos[proto]</span><br><span class="line"></span><br><span class="line">    <span class="comment">#TCP和UPD    </span></span><br><span class="line">    <span class="keyword">if</span> TCP <span class="keyword">in</span> packet_x:</span><br><span class="line">        protos_tcp = &#123;<span class="number">80</span>: <span class="string">'Http'</span>, <span class="number">443</span>: <span class="string">'Https'</span>, <span class="number">23</span>: <span class="string">'Telnet'</span>, <span class="number">21</span>: <span class="string">'Ftp'</span>, <span class="number">20</span>: <span class="string">'ftp_data'</span>, <span class="number">22</span>: <span class="string">'SSH'</span>, <span class="number">25</span>: <span class="string">'SMTP'</span>&#125;</span><br><span class="line">        sport = packet_x[TCP].sport</span><br><span class="line">        dport = packet_x[TCP].dport</span><br><span class="line">        <span class="keyword">if</span> sport <span class="keyword">in</span> protos_tcp:</span><br><span class="line">            proto = protos_tcp[sport]</span><br><span class="line">        <span class="keyword">elif</span> dport <span class="keyword">in</span> protos_tcp:</span><br><span class="line">            proto = protos_tcp[dport]</span><br><span class="line">    <span class="keyword">elif</span> UDP <span class="keyword">in</span> packet_x:</span><br><span class="line">        <span class="keyword">if</span> packet_x[UDP].sport == <span class="number">53</span> <span class="keyword">or</span> packet_x[UDP].dport == <span class="number">53</span>:</span><br><span class="line">            proto = <span class="string">'DNS'</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#插入信息</span></span><br><span class="line">    length=len(packet_x)</span><br><span class="line">    info=packet_x.summary()</span><br><span class="line">    <span class="keyword">global</span> count</span><br><span class="line">    count+=<span class="number">1</span></span><br><span class="line">    No=<span class="string">'No'</span>+str(count)</span><br><span class="line">    packet_list.insert(<span class="string">''</span>,<span class="string">'end'</span>,str(count), text=No,values=(p_time, src, dst, proto, length, info))</span><br><span class="line">    packet_list.update_idletasks()</span><br></pre></td></tr></table></figure>
+
+<p>在数据包列表中插入抓到的数据报，并且从以太包到TCP包逐层分析。最后插入数据包表格packet_list。</p>
+<h3 id="开始抓包"><a href="#开始抓包" class="headerlink" title="开始抓包"></a>开始抓包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开始抓包</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_capture</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> liststate_flag</span><br><span class="line">    <span class="keyword">if</span> liststate_flag == <span class="number">1</span>:</span><br><span class="line">        choice=tk.messagebox.askyesnocancel(<span class="string">'提醒！'</span>, <span class="string">'是否保存当前抓到的数据包'</span>)</span><br><span class="line">        <span class="keyword">if</span> choice <span class="keyword">is</span> <span class="literal">True</span>:</span><br><span class="line">            print(<span class="string">'saving file...'</span>)</span><br><span class="line">            save_file()</span><br><span class="line">        <span class="keyword">elif</span> choice <span class="keyword">is</span> <span class="literal">False</span>:</span><br><span class="line">            print(<span class="string">'clear list and starting...'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    startB[<span class="string">'state'</span>] = tk.DISABLED</span><br><span class="line">    stopB[<span class="string">'state'</span>] = tk.NORMAL</span><br><span class="line">    saveB[<span class="string">'state'</span>] = tk.DISABLED</span><br><span class="line">    liststate_flag=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#清空列表，初始化计数器</span></span><br><span class="line">    temp=packet_list.get_children()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> temp:</span><br><span class="line">        packet_list.delete(item)</span><br><span class="line">    packet_list.clipboard_clear()</span><br><span class="line">    <span class="keyword">global</span> count</span><br><span class="line">    count=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#创建新线程</span></span><br><span class="line">    t=threading.Thread(target=capture_packet)</span><br><span class="line">    t.setDaemon(<span class="literal">True</span>)</span><br><span class="line">    t.start()</span><br><span class="line">    print(<span class="string">'start capture!'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>首先根据全局变量判断是否已经保存，已保存则直接开始抓包，未保存则提示保存。设置按钮状态。初始化数据包表格。创建新的线程执行capture_packet函数。</p>
+<h3 id="保存数据包"><a href="#保存数据包" class="headerlink" title="保存数据包"></a>保存数据包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存pcap文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_file</span><span class="params">()</span>:</span></span><br><span class="line">    filename=tk.filedialog.asksaveasfilename(title=<span class="string">'保存'</span>, filetypes=[(<span class="string">'所有文件'</span>,<span class="string">'*'</span>),(<span class="string">'数据包'</span>,<span class="string">'.pcap'</span>)], initialfile=<span class="string">'.pcap'</span>)</span><br><span class="line">    <span class="keyword">if</span> filename.find(<span class="string">'.pacp'</span>) == <span class="number">-1</span>:</span><br><span class="line">        filename+=<span class="string">'.pacp'</span></span><br><span class="line">    wrpcap(filename, packets)</span><br><span class="line">    <span class="keyword">global</span> liststate_flag</span><br><span class="line">    liststate_flag=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>将数据包保存为pacp文件，可以供wireshark分析。</p>
+<h3 id="停止抓包"><a href="#停止抓包" class="headerlink" title="停止抓包"></a>停止抓包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#停止抓包</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stop_capture</span><span class="params">()</span>:</span></span><br><span class="line">    e.set()</span><br><span class="line">    <span class="keyword">global</span> liststate_flag</span><br><span class="line">    liststate_flag=<span class="number">1</span></span><br><span class="line">    startB[<span class="string">'state'</span>]=tk.NORMAL</span><br><span class="line">    saveB[<span class="string">'state'</span>]=tk.NORMAL</span><br><span class="line">    stopB[<span class="string">'state'</span>]=tk.DISABLED</span><br><span class="line">    print(<span class="string">'stop capture!'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>e.set函数将线程事件置为true，触发stop_filter停止抓包。</p>
+<h3 id="单击显示详细信息"><a href="#单击显示详细信息" class="headerlink" title="单击显示详细信息"></a>单击显示详细信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单击获得详细信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">showInfo</span><span class="params">(event)</span>:</span></span><br><span class="line">    infoBox.delete(<span class="string">'1.0'</span>,tk.INSERT)</span><br><span class="line">    packet_index=event.widget.selection()</span><br><span class="line">    print(packet_index[<span class="number">0</span>])</span><br><span class="line">    packet_index=int(packet_index[<span class="number">0</span>])<span class="number">-1</span></span><br><span class="line">    info=packets[packet_index].show(dump=<span class="literal">True</span>).split(<span class="string">'\n'</span>)</span><br><span class="line">    print(info)</span><br><span class="line">    text=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> info:</span><br><span class="line">        line=line.replace(<span class="string">' '</span>,<span class="string">''</span>)</span><br><span class="line">        line+=<span class="string">'\n'</span></span><br><span class="line">        text+=line</span><br><span class="line">    infoBox.insert(tk.INSERT, text)</span><br></pre></td></tr></table></figure>
+
+<p>获取表格当前选择项的下标，从数据包列表中获取数据包。</p>
+<p>通过text控件显示信息，通过INSERT（即光标所在位置）写入和删除信息。</p>
+<p>通过回车符将数据包信息分割并存放在列表中，删除多余空格并逐行显示。</p>
+<h3 id="双击显示16进制信息"><a href="#双击显示16进制信息" class="headerlink" title="双击显示16进制信息"></a>双击显示16进制信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#双击获得hex值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInfo</span><span class="params">(event)</span>:</span></span><br><span class="line">    packet_index=event.widget.selection()</span><br><span class="line">    print(packet_index[<span class="number">0</span>])</span><br><span class="line">    packet_index=int(packet_index[<span class="number">0</span>])<span class="number">-1</span></span><br><span class="line">    messagebox.showinfo(title=<span class="string">'text'</span>, message=hexdump(packets[packet_index],dump=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+
+<p>16进制信息通过messagebox显示</p>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>ping一下百度，并抓包</p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/2-1616634361595.png" alt="2"></p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/1-1616634372601.png" alt="1"></p>
+<p>可以看到抓到各种数据包，并能找到ping使用的ICMP协议</p>
+<p>双击可以查看16进制</p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/3-1616634491588.png" alt="3"></p>
+<p>添加port 53(过滤DNS包)</p>
+<p><img src="/image/scapy%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/4-1616635311361.png" alt="4"></p>
+<p>抓到的都是DNS</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ul>
+<li>scapy库还可以实现更多的流量分析功能，这里只使用了简单的抓包和分析</li>
+<li>python的tkinter库简单轻便，适合简单的GUI编程</li>
+<li>当前完成的工具存在许多缺陷<ul>
+<li>尝试同时和wireshark一起抓包，发现好像wireshark抓到的包要多许多，可能存在丢包。</li>
+<li>数据包分析比较简单</li>
+<li>缺少筛选功能</li>
+<li>……</li>
+</ul>
+</li>
+<li>制作了简单的小工具，虽然没什么用，但是也学到了一些知识</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/31/heap-wiki/" rel="next" title="heap-wiki">
+                <i class="fa fa-chevron-left"></i> heap-wiki
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/03/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB/" rel="prev" title="验证码识别">
+                验证码识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="caiii-vegtable" />
+            
+              <p class="site-author-name" itemprop="name">caiii-vegtable</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python-scapy简易流量分析"><span class="nav-text">python scapy简易流量分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scapy"><span class="nav-text">scapy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scapy库安装"><span class="nav-text">scapy库安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scapy简单使用"><span class="nav-text">scapy简单使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP协议"><span class="nav-text">TCP&#x2F;IP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本思路"><span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-tkinter-库"><span class="nav-text">python tkinter 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI设计实现"><span class="nav-text">GUI设计实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抓取数据包"><span class="nav-text">抓取数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理数据包"><span class="nav-text">处理数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始抓包"><span class="nav-text">开始抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存数据包"><span class="nav-text">保存数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止抓包"><span class="nav-text">停止抓包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单击显示详细信息"><span class="nav-text">单击显示详细信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双击显示16进制信息"><span class="nav-text">双击显示16进制信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#演示"><span class="nav-text">演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考"><span class="nav-text">思考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caiii-vegtable</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

